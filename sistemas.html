@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PÁGINA DE SISTEMAS SUSTENTÁVEIS — Loja</title>
+
+  <!-- Font + Chart.js -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <style>
+       :root{
+      --verde-escuro:#0b1220;
+      --branco:#ffffff;
+      --terra:#83a6d4;
+      --bege:#d9e8f2;
+      --destaque:#d7dbed;
+      --destaque2:#00a3cc;
+      --texto-claro:#f5f5f5;
+      --sombra: rgba(6,10,30,0.6);
+      --glass: rgba(255,255,255,0.03);
+      --container: 1180px;
+    }
+
+    /* Reset / base */
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071025 0%, #091427 100%);color:var(--texto-claro);font-family:Inter,system-ui,Arial;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--container);margin:0 auto;padding:28px}
+
+    /* Header */
+    .site-header{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.03)}
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--destaque),var(--destaque2));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:24px;color:#041226}
+    .site-header h1{margin:0;font-size:18px}
+    .subtitle{margin:4px 0 0;color:rgba(235,240,255,0.6);font-size:13px}
+    .top-nav{display:flex;gap:10px}
+    .top-nav a{padding:8px 10px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.02);font-size:13px}
+    .top-nav a:hover{background:rgba(255,255,255,0.02)}
+
+    /* Panels */
+    .panel{margin-top:22px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px var(--sombra)}
+    .panel-title{margin:0 0 10px;font-size:20px;color:var(--destaque)}
+    .panel.small{padding:14px}
+
+    /* ACCORDION */
+    .accordion-item{margin-bottom:12px;border-radius:10px;overflow:hidden}
+    .accordion-toggle{
+      width:100%;display:flex;justify-content:space-between;align-items:center;padding:14px;background:transparent;border:none;color:var(--texto-claro);cursor:pointer;font-size:15px;border-radius:10px;transition:background .18s;
+    }
+    .accordion-toggle:hover{background:rgba(255,255,255,0.02)}
+    .acc-title{font-weight:700}
+    .acc-sub{color:rgba(255,255,255,0.65);font-size:13px}
+    .chev{transition:transform .28s}
+    .accordion-panel{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.2,.9,.3,1),padding .22s}
+    .accordion-panel.open{padding:14px 12px 18px;max-height:900px}
+
+    /* layout inside accordion */
+    .panel-grid{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start}
+    .panel-text ul{margin:0;padding-left:18px;color:rgba(255,255,255,0.9);line-height:1.65;font-size:15px}
+    .panel-chart{background:var(--glass);padding:10px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+
+    /* charts */
+    .chart-canvas{width:100%;height:220px;max-height:220px}
+
+    /* cards / info row */
+    .cards-row{display:flex;gap:14px;margin-top:12px}
+    .info-card{flex:1;padding:14px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+
+    /* Shop grid */
+    .shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px}
+    .product-card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
+      display:flex;gap:12px;align-items:flex-start;transition:transform .22s,box-shadow .22s
+    }
+    .product-card:hover{transform:translateY(-6px);box-shadow:0 18px 50px rgba(10,14,40,0.5)}
+    .pc-image{
+      width:110px;
+      height:82px;
+      border-radius:10px;
+      overflow:hidden;
+      flex:0 0 110px;
+      background:linear-gradient(135deg,var(--destaque),var(--destaque2));
+      display:flex;align-items:center;justify-content:center;font-size:32px
+    }
+    .pc-image img{width:100%;height:100%;object-fit:cover;display:block}
+    .pc-body h4{margin:0}
+    .price{font-weight:800;color:var(--destaque2);margin-top:6px}
+    .excerpt{color:rgba(255,255,255,0.75);margin:8px 0}
+
+    /* buttons */
+    .btn{padding:10px 12px;border-radius:10px;border:1px solid transparent;cursor:pointer;font-weight:700}
+    .btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--texto-claro)}
+    .btn-primary{background:linear-gradient(90deg,var(--destaque2),#3bb6d6);color:#041226;border:none}
+
+    /* modal quickview */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,15,0.6);z-index:1500}
+    .modal.show{display:flex}
+    .modal-inner{background:linear-gradient(180deg, #07122a, #081427);padding:18px;border-radius:12px;width:92%;max-width:920px;border:1px solid rgba(255,255,255,0.03);position:relative}
+    .modal-close{position:absolute;right:18px;top:12px;background:none;border:none;color:var(--texto-claro);font-size:20px;cursor:pointer}
+    .modal-body{display:grid;grid-template-columns:360px 1fr;gap:18px}
+    .modal-media{background:linear-gradient(135deg,var(--destaque),var(--destaque2));border-radius:10px;min-height:220px;display:flex;align-items:center;justify-content:center;font-size:40px;overflow:hidden}
+    .modal-media img{width:100%;height:100%;object-fit:cover;display:block}
+    .modal-info h3{margin:0}
+    .modal-actions{margin-top:12px;display:flex;gap:10px}
+
+    .integrated-chart-row{display:flex;gap:16px;margin-top:12px}
+    .chart-box.mini{flex:1;padding:12px;border-radius:10px;background:rgba(255,255,255,0.02)}
+
+    /* footer */
+    .site-footer{margin-top:26px;padding:14px;text-align:center;color:rgba(255,255,255,0.55);font-size:13px}
+
+    /* responsive */
+    @media (max-width:980px){
+      .panel-grid{grid-template-columns:1fr}
+      .modal-body{grid-template-columns:1fr}
+      .shop-grid{grid-template-columns:1fr}
+      .integrated-chart-row{flex-direction:column}
+      .chart-canvas{height:180px}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header container">
+    <div class="brand">
+      <div class="logo">🌿</div>
+      <div>
+        <h1>PÁGINA DE SISTEMAS SUSTENTÁVEIS</h1>
+        <div class="subtitle">ISOLAMENTO E MATERIAIS INOVADORES — Design, Produtos e Sistemas Integrados</div>
+      </div>
+    </div>
+    <nav class="top-nav">
+      <a href="#sistemas">Sistemas</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#integrados">Integrados</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- SISTEMAS SUSTENTÁVEIS -->
+    <section id="sistemas" class="panel">
+      <h2 class="panel-title">ISOLAMENTO E MATERIAIS INOVADORES</h2>
+
+      <div class="accordion">
+        <!-- ISOCEL -->
+        <div class="accordion-item">
+          <button class="accordion-toggle" aria-expanded="false" data-chart="barChartSmall">
+            <div>
+              <div class="acc-title">🧱 ISOCEL — ISOLAMENTO EM PAPEL RECICLADO</div>
+              <div class="acc-sub">λ = 0,039 W/mK · 100% reciclável</div>
+            </div>
+            <div class="chev">▾</div>
+          </button>
+          <div class="accordion-panel">
+            <div class="panel-grid">
+              <div class="panel-text">
+                <ul>
+                  <li>"Transformamos papel em conforto térmico"</li>
+                  <li>Condutividade térmica: λ = 0,039 W/mK</li>
+                  <li>Aplicação por insuflação ou projetado</li>
+                  <li>100% reciclável e não tóxico</li>
+                </ul>
+              </div>
+              <div class="panel-chart">
+                <canvas id="barChartSmall" class="chart-canvas"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GUARDA-CORPOS -->
+        <div class="accordion-item">
+          <button class="accordion-toggle" aria-expanded="false" data-chart="pieChartSmall">
+            <div>
+              <div class="acc-title">🎨 GUARDA-CORPOS ARTÍSTICOS</div>
+              <div class="acc-sub">Design personalizado · Materiais compostos ecológicos</div>
+            </div>
+            <div class="chev">▾</div>
+          </button>
+          <div class="accordion-panel">
+            <div class="panel-grid">
+              <div class="panel-text">
+                <ul>
+                  <li>Imitação madeira de alta resistência</li>
+                  <li>Design personalizado para cada projeto</li>
+                  <li>Materiais compostos ecológicos</li>
+                </ul>
+              </div>
+              <div class="panel-chart">
+                <canvas id="pieChartSmall" class="chart-canvas"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MUROS -->
+        <div class="accordion-item">
+          <button class="accordion-toggle" aria-expanded="false" data-chart="lineChartSmall">
+            <div>
+              <div class="acc-title">🏞️ MUROS IMITAÇÃO PEDRA</div>
+              <div class="acc-sub">Revestimentos leves · Técnicas artesanais</div>
+            </div>
+            <div class="chev">▾</div>
+          </button>
+          <div class="accordion-panel">
+            <div class="panel-grid">
+              <div class="panel-text">
+                <ul>
+                  <li>Revestimentos leves com aparência natural</li>
+                  <li>Técnicas artesanais de aplicação</li>
+                  <li>Durabilidade superior com baixa manutenção</li>
+                </ul>
+              </div>
+              <div class="panel-chart">
+                <canvas id="lineChartSmall" class="chart-canvas"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SISTEMAS ENERGÉTICOS -->
+    <section id="integrados" class="panel small">
+        <header class="site-header container">
+        <div class="brand">
+            <div class="logo">🌿</div>
+            <div>
+                <h3>SISTEMAS ENERGÉTICOS</h3>
+              <div class="subtitle">ISOLAMENTO E MATERIAIS INOVADORES — Design, Produtos e Sistemas Integrados</div>
+            </div></header>
+      
+
+      <div class="cards-row" aria-hidden="false">
+        <div class="info-card">
+          <h4>☀️ SISTEMA FOTOVOLTAICO INTEGRADO</h4>
+          <p>· Painéis de alta eficiência (21%+)<br>· Monitorização em tempo real via app<br>· Armazenamento em baterias de lítio</p>
+        </div>
+        <div class="info-card">
+          <h4>💨 AEROGERADORES SILENCIOSOS</h4>
+          <p>· Produção complementar noturna<br>· Nível sonoro &lt; 25dB<br>· Ideal para zonas ventosas</p>
+        </div>
+        <div class="info-card">
+          <h4>🔥 SISTEMA PEDI - AQUECIMENTO EXTERNO</h4>
+          <p>· Tecnologia de troca térmica avançada<br>· Mantém 21°C constante com mínimo consumo<br>· Integração com painéis solares</p>
+        </div>
+      </div>
+
+      <div class="integrated-chart-row">
+        <div class="chart-box mini">
+          <div class="chart-title">Distribuição Renovável</div>
+          <canvas id="integratedPie" class="chart-canvas"></canvas>
+        </div>
+        <div class="chart-box mini">
+          <div class="chart-title">Consistência PEDI (°C)</div>
+          <canvas id="integratedLine" class="chart-canvas"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUTOS ARTÍSTICOS -->
+    <section id="produtos" class="panel">
+        <h2 class="panel-title">PÁGINA DE PRODUTOS ARTÍSTICOS</h2>
+  
+        <div class="shop-grid">
+          <!-- Product 1: CASA -->
+          <article class="product-card" data-id="casa-base" data-price="18000">
+            <div class="pc-image">
+              <!-- change this path to your thumbnail image -->
+              <img src="images/casa-base-thumb.jpg" alt="Casa de Caracol Base — vista exterior" loading="lazy">
+            </div>
+  
+            <div class="pc-body">
+              <h4>Casa de Caracol Base</h4>
+              <p class="price">18.000€ + IVA</p>
+              <p class="excerpt">Módulos modulares, personalizáveis.</p>
+              <div class="card-actions">
+                <button class="btn btn-outline quickview" data-product="casa-base">Quick view</button>
+                <button class="btn btn-primary buy" data-product="casa-base">Comprar</button>
+              </div>
+            </div>
+          </article>
+  
+          <!-- Product 2: COZINHA -->
+          <article class="product-card" data-id="mod-cozinha" data-price="3500">
+            <div class="pc-image">
+              <!-- change this path to your thumbnail image -->
+              <img src="images/mod-cozinha-thumb.jpg" alt="Módulo Cozinha Criativa" loading="lazy">
+            </div>
+  
+            <div class="pc-body">
+              <h4>Módulo Cozinha Criativa</h4>
+              <p class="price">3.500€</p>
+              <p class="excerpt">Design funcional e estético.</p>
+              <div class="card-actions">
+                <button class="btn btn-outline quickview" data-product="mod-cozinha">Quick view</button>
+                <button class="btn btn-primary buy" data-product="mod-cozinha">Comprar</button>
+              </div>
+            </div>
+          </article>
+  
+          <!-- Product 3: GUARDACOR -->
+          <article class="product-card" data-id="guardacor" data-price="1200">
+            <div class="pc-image">
+              <!-- change this path to your thumbnail image -->
+              <img src="images/guardacor-thumb.jpg" alt="Guarda-corpos Esculturais" loading="lazy">
+            </div>
+  
+            <div class="pc-body">
+              <h4>Guarda-corpos Esculturais</h4>
+              <p class="price">1.200€</p>
+              <p class="excerpt">Segurança + arte.</p>
+              <div class="card-actions">
+                <button class="btn btn-outline quickview" data-product="guardacor">Quick view</button>
+                <button class="btn btn-primary buy" data-product="guardacor">Comprar</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+  
+  </main>
+
+  <!-- QUICKVIEW MODAL -->
+  <div id="quickview-modal" class="modal" aria-hidden="true">
+    <div class="modal-inner" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" aria-label="Fechar">✕</button>
+      <div class="modal-body">
+        <div class="modal-media" id="modal-media">🖼️</div>
+        <div class="modal-info">
+          <h3 id="modal-title">Produto</h3>
+          <p id="modal-price">€0</p>
+          <p id="modal-desc">Descrição do produto...</p>
+          <div id="modal-extra"></div>
+          <div class="modal-actions">
+            <button id="modal-buy" class="btn btn-primary">Comprar</button>
+            <button id="modal-contact" class="btn btn-outline">Fazer pergunta</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Inline JS: charts (kept minimal), modal, quickview, product images -->
+  <script>
+  document.addEventListener('DOMContentLoaded', ()=> {
+    // footer year
+    const ye = document.getElementById('year'); if(ye) ye.textContent = new Date().getFullYear();
+
+    // --- PRODUCTS: only update the image paths here ---
+    // For each product set:
+    //  - thumb: thumbnail shown in the product card
+    //  - image: large image shown in the Quick view modal
+    // Replace the file paths with your real files.
+    const PRODUCTS = {
+      'casa-base': {
+        title: 'Casa de Caracol Base',
+        price: '18.000€ + IVA',
+        desc: 'Casa modular, base com possibilidade de personalização. Inclui estrutura e projecto inicial.',
+        extraHTML: '<ul><li>Módulos personalizáveis</li><li>Entrega e montagem: sob consulta</li></ul>',
+        thumb: 'images/17.png',   // <-- change this path
+        image: 'images/17.png'    // <-- change this path (modal)
+      },
+      'mod-cozinha': {
+        title: 'Módulo Cozinha Criativa',
+        price: '3.500€',
+        desc: 'Cozinha compacta, design funcional com materiais sustentáveis.',
+        extraHTML: '<ul><li>Opções de acabamento</li><li>Instalação profissional</li></ul>',
+        thumb: 'images/24.png', // <-- change this path
+        image: 'images/24.png'  // <-- change this path (modal)
+      },
+      'guardacor': {
+        title: 'Guarda-corpos Esculturais',
+        price: '1.200€',
+        desc: 'Estruturas artísticas que combinam segurança e estética.',
+        extraHTML: '<ul><li>Personalização de cor e padrão</li></ul>',
+        thumb: 'images/guardacor-thumb.jpg',    // <-- change this path
+        image: 'images/guardacor-large.jpg'     // <-- change this path (modal)
+      }
+    };
+
+    // -- populate thumbnails automatically (optional convenience) --
+    Object.keys(PRODUCTS).forEach(id => {
+      const card = document.querySelector(`.product-card[data-id="${id}"]`);
+      if(!card) return;
+      const thumbPath = PRODUCTS[id].thumb;
+      const imgEl = card.querySelector('.pc-image img');
+      if(imgEl && thumbPath) imgEl.src = thumbPath;
+    });
+
+    // Modal elements
+    const modal = document.getElementById('quickview-modal');
+    const modalMedia = document.getElementById('modal-media');
+    const modalTitle = document.getElementById('modal-title');
+    const modalPrice = document.getElementById('modal-price');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalExtra = document.getElementById('modal-extra');
+    const modalBuy = document.getElementById('modal-buy');
+    const modalClose = document.querySelector('.modal-close');
+
+    // Quickview: open modal and set content (including image)
+    document.querySelectorAll('.quickview').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        const id = btn.dataset.product;
+        const p = PRODUCTS[id];
+        if(!p) return;
+
+        // fill text
+        modalTitle.textContent = p.title || 'Produto';
+        modalPrice.textContent = p.price || '';
+        modalDesc.textContent = p.desc || '';
+        modalExtra.innerHTML = p.extraHTML || '';
+
+        // image: clear and add <img> (uses p.image)
+        modalMedia.innerHTML = '';
+        if(p.image){
+          const img = document.createElement('img');
+          img.src = p.image;
+          img.alt = p.title || 'Produto';
+          img.loading = 'lazy';
+          modalMedia.appendChild(img);
+        } else {
+          modalMedia.textContent = '🖼️';
+        }
+
+        // show modal
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden','false');
+
+        // if page embedded in iframe: notify parent about size (optional)
+        try{
+          if(window.parent && window.parent !== window){
+            const root = document.documentElement;
+            const h = Math.max(root.scrollHeight, document.body.scrollHeight || 0);
+            parent.postMessage({type:'embed-height', height: h}, '*');
+          }
+        }catch(e){}
+      });
+    });
+
+    // buy actions (simulation)
+    document.querySelectorAll('.product-card .buy').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        const card = btn.closest('.product-card');
+        const id = card && card.dataset.id;
+        const price = card && card.dataset.price;
+        alert(`Comprar ${id} — preço: ${price} (simulação)`);
+      });
+    });
+
+    // modal close handlers
+    modalClose.addEventListener('click', ()=>{ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); });
+    modal.addEventListener('click', (e)=>{ if(e.target === modal){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); } });
+
+    // modal-buy (simulation)
+    modalBuy.addEventListener('click', ()=>{
+      alert('Pedido de compra iniciado: ' + (modalTitle.textContent || ''));
+      modal.classList.remove('show'); modal.setAttribute('aria-hidden','true');
+    });
+
+    // initialize charts or other parts as needed...
+    // (you kept the original chart init in your version — add it here if required)
+  });
+  </script>
+
+ 
+
+  <!-- Inline JS: accordion, lazy charts, modal, actions -->
+  <script>
+  document.addEventListener('DOMContentLoaded', ()=> {
+    // footer year
+    const ye = document.getElementById('year'); if(ye) ye.textContent = new Date().getFullYear();
+
+    // Accordion
+    const toggles = document.querySelectorAll('.accordion-toggle');
+    const chartInited = {};
+
+    toggles.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.accordion-item');
+        const panel = item.querySelector('.accordion-panel');
+        const isOpen = panel.classList.contains('open');
+
+        // Buka/tutup
+        if (isOpen) {
+          panel.classList.remove('open');
+          panel.style.maxHeight = null;
+          btn.setAttribute('aria-expanded','false');
+          btn.querySelector('.chev').style.transform = 'rotate(0deg)';
+        } else {
+          panel.classList.add('open');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded','true');
+          btn.querySelector('.chev').style.transform = 'rotate(180deg)';
+
+          // lazy-init chart
+          const chartId = btn.dataset.chart;
+          if(chartId && !chartInited[chartId]) {
+            initChart(chartId);
+            chartInited[chartId] = true;
+          }
+        }
+      });
+
+      // keyboard
+      btn.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }});
+    });
+
+    // Init integrated charts immediately
+    initChart('integratedPie'); initChart('integratedLine');
+
+    // Chart initializers
+    function initChart(id){
+      if(id === 'barChartSmall') {
+        const ctx = document.getElementById(id); if(!ctx) return;
+        new Chart(ctx, {
+          type:'bar',
+          data:{labels:['ISOCEL','Lã Mineral','Poliestireno'], datasets:[{label:'Condutividade (W/mK)',data:[0.035,0.045,0.033],backgroundColor:['#00a3cc','#6b74ff','#83a6d4'],borderRadius:6}]},
+          options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,suggestedMax:0.06,ticks:{color:'#cfeaff'}},x:{ticks:{color:'#f6fcff'}}}}
+        });
+      }
+      if(id === 'pieChartSmall') {
+        const ctx = document.getElementById(id); if(!ctx) return;
+        new Chart(ctx, {
+          type:'pie',
+          data:{labels:['Design','Material','Acabamento'],datasets:[{data:[45,30,25],backgroundColor:['#6b74ff','#00a3cc','#d7dbed']}]},
+          options:{plugins:{legend:{position:'bottom',labels:{color:'#f6fcff'}}}}
+        });
+      }
+      if(id === 'lineChartSmall') {
+        const ctx = document.getElementById(id); if(!ctx) return;
+        new Chart(ctx,{
+          type:'line',
+          data:{labels:['0h','6h','12h','18h','24h'],datasets:[{label:'Estabilidade (°C)',data:[22.5,22.1,21.9,21.3,21.2],tension:0.3,borderColor:'#00a3cc',fill:false}]},
+          options:{plugins:{legend:{display:false}},scales:{y:{ticks:{color:'#eaf6ff'}},x:{ticks:{color:'#eaf6ff'}}}}
+        });
+      }
+      if(id === 'integratedPie') {
+        const ctx = document.getElementById(id); if(!ctx) return;
+        new Chart(ctx,{type:'doughnut',data:{labels:['Solar','Eólica','Biogás'],datasets:[{data:[55,25,20],backgroundColor:['#00a3cc','#6b74ff','#83a6d4']}]},options:{plugins:{legend:{position:'bottom',labels:{color:'#f6fcff'}}}}});
+      }
+      if(id === 'integratedLine') {
+        const ctx = document.getElementById(id); if(!ctx) return;
+        new Chart(ctx,{type:'line',data:{labels:['Jan','Apr','Jul','Oct'],datasets:[{label:'Temp (°C)',data:[21.2,21.1,21.3,21.2],borderColor:'#6b74ff',tension:0.2,fill:false}]},options:{plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#f6fcff'}}}}});
+      }
+    }
+
+    // Quickview modal logic
+    const modal = document.getElementById('quickview-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalPrice = document.getElementById('modal-price');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalExtra = document.getElementById('modal-extra');
+    const modalBuy = document.getElementById('modal-buy');
+    const modalClose = document.querySelector('.modal-close');
+
+    const PRODUCTS = {
+      'casa-base':{title:'Casa de Caracol Base',price:'18.000€ + IVA',desc:'Casa modular, base com possibilidade de personalização. Inclui estrutura e projecto inicial.',extraHTML:'<ul><li>Módulos personalizáveis</li><li>Entrega e montagem: sob consulta</li></ul>'},
+      'mod-cozinha':{title:'Módulo Cozinha Criativa',price:'3.500€',desc:'Cozinha compacta, design funcional com materiais sustentáveis.',extraHTML:'<ul><li>Opções de acabamento</li><li>Instalação profissional</li></ul>'},
+      'guardacor':{title:'Guarda-corpos Esculturais',price:'1.200€',desc:'Estruturas artísticas que combinam segurança e estética.',extraHTML:'<ul><li>Personalização de cor e padrão</li></ul>'}
+    };
+
+    document.querySelectorAll('.quickview').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const id = btn.dataset.product; const p = PRODUCTS[id]; if(!p) return;
+        modalTitle.textContent = p.title; modalPrice.textContent = p.price; modalDesc.textContent = p.desc; modalExtra.innerHTML = p.extraHTML||'';
+        modal.classList.add('show'); modal.setAttribute('aria-hidden','false');
+      });
+    });
+
+    modalBuy.addEventListener('click', ()=>{
+      const title = modalTitle.textContent;
+      // TODO: لینک checkout یا webhook اینجا اضافه کن
+      alert('Pedido de compra iniciado: ' + title);
+      modal.classList.remove('show'); modal.setAttribute('aria-hidden','true');
+    });
+
+    modalClose.addEventListener('click', ()=>{ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); });
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) { modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); } });
+
+    document.querySelectorAll('.product-card .buy').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        const card = btn.closest('.product-card'); const id = card.dataset.id; const price = card.dataset.price;
+        alert(`Comprar ${id} — preço: ${price} (simulação)`);
+      });
+    });
+
+  }); // DOMContentLoaded
+  </script>
+</body>
+</html>
