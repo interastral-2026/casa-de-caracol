@@ -1,9 +1,9 @@
 :root {
-    --verde-escuro: #3d3a5b;     /* خاکستری تیره – پس‌زمینه مدرن */
+    --verde-escuro: #0b1220;     /* خاکستری تیره – پس‌زمینه مدرن */
     --verde-claro: #2870a4;      /* قهوه‌ای–نارنجی لوکس */
     --terra: #83a6d4;            /* کرم خاکی تیره */
     --bege: #d9e8f2;             /* کرم روشن */
-    --branco: #1a1a1a;           /* مشکی خیلی تیره */
+    --branco: #0b1220;          /* مشکی خیلی تیره */
     --destaque: #d7dbed;         /* نارنجی مدرن برای دکمه‌ها */
     --destaque2: #00a3cc;        /* نارنجی سوخته برای hover */
     --texto-claro: #f5f5f5;      /* متن روشن روی پس‌زمینه تیره */
@@ -152,7 +152,7 @@ nav a:hover {
         .section-title {
             text-align: center;
             margin-bottom: 3rem;
-            color: var(--verde-escuro);
+            color: #b0b3b3da;
           
         }
         
@@ -190,7 +190,7 @@ nav a:hover {
         
         .about-text {
             flex: 1;
-            color: #03046a;
+            color: #0b747cd6;
             margin-top: 0px;
             min-width: 300px;
         }
@@ -532,7 +532,7 @@ nav a:hover {
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
-             color: var(--branco);
+             color: #00ffff;;
             
         }
         
@@ -547,7 +547,7 @@ nav a:hover {
             position: relative;
             display: inline-block;
             font-size: 1.2rem;
-            color: var(--branco);
+            color: #00ffff;;
         }
         
         .footer-section h3::after {
@@ -558,7 +558,7 @@ nav a:hover {
             width: 40px;
             height: 2px;
             background-color: var(--bege);
-            color: var(--branco);
+            color: #c1d1d1;
         }
         
         .footer-links {
@@ -720,7 +720,7 @@ button[slot]:active {
     max-width: 1000px;
     margin: 40px auto;
     animation: fadeIn 0.5s ease forwards;
-    color: var(--verde-escuro);
+    color: #0b747cd6;;
 }
 
 #infoSection h2 {
@@ -728,7 +728,7 @@ button[slot]:active {
     margin-bottom: 20px;
     text-align: center;
     font-family: 'Poppins', sans-serif;
-    color: #50adefec;
+    color: #0b747cd6;
     text-shadow: 0 0 6px #00f6ff, 0 0 20px #00aaff, 0 0 40px #0077ff;
     animation: neon3DTitle 2.5s ease-in-out infinite alternate;
 }
@@ -772,8 +772,8 @@ button[slot]:active {
   gap: 10px;
   font-size: 16px;
   font-family: 'Poppins', sans-serif; /* فونت شیک و مدرن */
-  color: #0077cc; /* آبی متوسط مناسب برای پس‌زمینه روشن */
-  text-shadow: 0 0 2px #00aaff; /* سایه ملایم برای خوانایی */
+  color: #0b747cd6; /* آبی متوسط مناسب برای پس‌زمینه روشن */
+  text-shadow: 0 0 2px #0b747cd6; /* سایه ملایم برای خوانایی */
   line-height: 1.6;
   text-align: center;
   margin-bottom: 15px;
@@ -1150,4 +1150,63 @@ button[slot]:active {
   }
 }
 
+.section-title h5 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
 
+/* CSS: هدرِ مرکزی زیبا */
+.header-title {
+    font-family: "Playfair Display", "Montserrat", Georgia, serif; /* Playfair اولویت، بعد Montserrat به‌عنوان fallback */
+    font-weight: 700;
+    font-size: clamp(28px, 4.5vw, 56px); /* واکنش‌گرا: بین 28 و 56 پیکسل */
+    line-height: 1.05;
+    letter-spacing: 0.5px;
+    text-align: center;           /* وسط‌چین کردن */
+    margin: 24px 0;               /* فاصله بالا/پایین */
+    color:#0b747cd6;
+    /* رنگ متن */
+    text-transform: none;         /* یا 'uppercase' برای تمام حروف بزرگ */
+    max-width: 900px;             /* برای جلوگیری از خیلی کشیده شدن متن */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 16px;              /* فاصله‌ی جانبی در موبایل */
+  }
+  
+
+
+
+  /* Keep-layout (No-wrap) — apply to whole section */
+@media (max-width: 760px) {
+    .keep-layout-section {
+      display: flex;
+      flex-wrap: nowrap;        /* مهم: نگذار ردیف بشکند */
+      gap: 12px;
+      align-items: stretch;
+      overflow-x: auto;         /* اگر خیلی وسیع شد، اجازه اسکرول بده */
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 8px;      /* جا برای اسکرول */
+      scroll-snap-type: x mandatory; /* اختیاری: اگر بخواهی snap داشته باشی */
+    }
+  
+    /* آیتم‌های داخل section (فرض: هر child یک کارت/div است) */
+    .keep-layout-section > * {
+      flex: 0 0 auto;          /* اجازه نده آیتم‌ها با هم ترکیب/برایشان wrap شوند */
+      min-width: 140px;        /* حداقل اندازه خوانا در موبایل — تنظیم کن */
+      max-width: 48%;          /* اگر می‌خواهی حداکثر محدود شود؛ یا حذفش کن */
+      scroll-snap-align: start; /* در صورت استفاده از snap */
+    }
+  
+    /* اگر می‌خواهی آیتم‌ها دقیقاً سایز دسکتاپ را حفظ کنند (مثلاً 280px) */
+    .keep-layout-section.preserve-desktop > * {
+      flex: 0 0 280px;  /* ثابت: به اندازه دسکتاپ بمانند */
+      width: 280px;
+    }
+  
+    /* نمای بهتر برای اسکرول: نوار کوچک در webkit */
+    .keep-layout-section::-webkit-scrollbar { height: 8px; }
+    .keep-layout-section::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 8px; }
+  }
+  
