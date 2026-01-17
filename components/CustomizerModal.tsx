@@ -2,7 +2,7 @@
 import React, { useState, useRef } from 'react';
 import { GoogleGenAI } from "@google/genai";
 import { ModuleDetail } from '../types';
-import { useLanguage } from '../LanguageContext';
+import { useLanguage, Language } from '../LanguageContext';
 import { translations } from '../translations';
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
 
 const CustomizerModal: React.FC<Props> = ({ isOpen, onClose, module, localizedModule, isNightMode }) => {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as Language];
   const [userImage, setUserImage] = useState<string | null>(null);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -71,10 +71,13 @@ const CustomizerModal: React.FC<Props> = ({ isOpen, onClose, module, localizedMo
         }
       });
 
-      for (const part of response.candidates[0].content.parts) {
-        if (part.inlineData) {
-          setGeneratedImage(`data:image/png;base64,${part.inlineData.data}`);
-          break;
+      const candidate = response.candidates?.[0];
+      if (candidate?.content?.parts) {
+        for (const part of candidate.content.parts) {
+          if (part.inlineData) {
+            setGeneratedImage(`data:image/png;base64,${part.inlineData.data}`);
+            break;
+          }
         }
       }
     } catch (error) {
@@ -178,6 +181,7 @@ const CustomizerModal: React.FC<Props> = ({ isOpen, onClose, module, localizedMo
                   <button onClick={downloadImage} className={`py-4 rounded-xl border font-orbitron font-bold text-[9px] tracking-widest uppercase transition-all ${isNightMode ? 'border-white/10 text-white hover:bg-white/5' : 'border-slate-200 text-slate-800 hover:bg-slate-50'}`}>
                     {t.customizer.download}
                   </button>
+                  {/* Fix: Changed handleOrder prop to onClick for standard button compatibility */}
                   <button onClick={handleOrder} className={`py-4 rounded-xl font-orbitron font-bold text-[9px] tracking-widest uppercase transition-all shadow-xl ${isNightMode ? 'bg-cyan-600 text-white hover:bg-cyan-500' : 'bg-teal-600 text-white hover:bg-teal-500'}`}>
                     {t.customizer.order}
                   </button>

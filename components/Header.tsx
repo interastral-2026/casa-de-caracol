@@ -13,7 +13,7 @@ const Header: React.FC<HeaderProps> = ({ isVisible, isNightMode, onToggleTheme }
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as Language];
   
   const desktopLangRef = useRef<HTMLDivElement>(null);
   const mobileLangRef = useRef<HTMLDivElement>(null);
@@ -177,7 +177,6 @@ const Header: React.FC<HeaderProps> = ({ isVisible, isNightMode, onToggleTheme }
         </div>
       </div>
 
-      {/* Re-designed Glassmobile Menu */}
       <div className={`lg:hidden fixed inset-0 top-20 transition-all duration-500 z-40
         ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
         <div className="absolute inset-0 bg-black/40 backdrop-blur-md" onClick={() => setIsMenuOpen(false)} />

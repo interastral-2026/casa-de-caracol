@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MODULE_DATA } from '../constants';
 import { ModuleKey } from '../types';
-import { useLanguage } from '../LanguageContext';
+import { useLanguage, Language } from '../LanguageContext';
 import { translations } from '../translations';
 import CustomizerModal from './CustomizerModal';
 
@@ -13,7 +13,7 @@ interface Props {
 
 const SectionModules: React.FC<Props> = ({ id, isNightMode }) => {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as Language];
   const [selectedModule, setSelectedModule] = useState<ModuleKey | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isInfoVisible, setIsInfoVisible] = useState(false);
@@ -45,7 +45,7 @@ const SectionModules: React.FC<Props> = ({ id, isNightMode }) => {
       infoPanelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, 300);
     
-    const foundIndex = index !== undefined ? index : t.infoCards.findIndex(card => card.id === key);
+    const foundIndex = index !== undefined ? index : t.infoCards.findIndex((card: any) => card.id === key);
     if (foundIndex !== -1) {
       setCurrentIndex(foundIndex);
       scrollToIndex(cardSliderRef, foundIndex, 4);
@@ -137,8 +137,7 @@ const SectionModules: React.FC<Props> = ({ id, isNightMode }) => {
 
   const themeKey = isNightMode ? 'night' : 'day';
   
-  // Combine technical data (images) with translated text
-  const currentModuleInfo = selectedModule ? t.modules[selectedModule as keyof typeof t.modules] : null;
+  const currentModuleInfo = selectedModule ? (t.modules as any)[selectedModule] : null;
   const currentModuleTechnical = selectedModule ? MODULE_DATA[selectedModule] : null;
 
   return (
@@ -227,9 +226,9 @@ const SectionModules: React.FC<Props> = ({ id, isNightMode }) => {
             onTouchMove={cardDrag.onMouseMove}
             className={`flex gap-5 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-6 transition-all duration-300 ${isCardDragging ? 'cursor-grabbing scale-[0.99]' : 'cursor-grab'}`}
           >
-            {t.infoCards.map((card, index) => {
+            {t.infoCards.map((card: any, index: number) => {
               const isActive = selectedModule === card.id;
-              const moduleImg = MODULE_DATA[card.id as ModuleKey].images[themeKey][0] || "";
+              const moduleImg = MODULE_DATA[card.id as ModuleKey]?.images[themeKey][0] || "";
               return (
                 <div key={card.id} onClick={() => handleModuleSelect(card.id as ModuleKey, index)}
                   className={`min-w-[75%] sm:min-w-[40%] lg:min-w-[22%] snap-center group relative aspect-[14/10] rounded-[2rem] overflow-hidden border transition-all duration-700
@@ -268,8 +267,7 @@ const SectionModules: React.FC<Props> = ({ id, isNightMode }) => {
                 />
               </div>
               
-              <div className="w-[60%] aspect-square rounded-[2rem] overflow-hidden shadow-xl self-end -mt-16 md:-mt-24 border-4 transition-transform duration-700 hover:translate-x-2
-                ${isNightMode ? 'border-[#0b1220]' : 'border-white'} z-10 group bg-black/5">
+              <div className={`w-[60%] aspect-square rounded-[2rem] overflow-hidden shadow-xl self-end -mt-16 md:-mt-24 border-4 transition-transform duration-700 hover:translate-x-2 z-10 group bg-black/5 ${isNightMode ? 'border-[#0b1220]' : 'border-white'}`}>
                 <img 
                   src={currentModuleTechnical?.images[themeKey][1] || currentModuleTechnical?.images[themeKey][0]} 
                   className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110" 
@@ -304,8 +302,8 @@ const SectionModules: React.FC<Props> = ({ id, isNightMode }) => {
       <CustomizerModal 
         isOpen={isCustomizerOpen}
         onClose={() => setIsCustomizerOpen(false)}
-        module={currentModuleTechnical} // Pass tech data
-        localizedModule={currentModuleInfo} // Pass localized text
+        module={currentModuleTechnical}
+        localizedModule={currentModuleInfo}
         isNightMode={isNightMode}
       />
     </section>

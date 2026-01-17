@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { BarChart, Bar, PieChart, Pie, Cell, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { useLanguage } from '../LanguageContext';
+import { useLanguage, Language } from '../LanguageContext';
 import { translations } from '../translations';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 
 const SectionSustainability: React.FC<Props> = ({ id, isNightMode }) => {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language as Language];
   const [activeTab, setActiveTab] = useState<number>(0);
 
   const barData = [
@@ -55,7 +55,6 @@ const SectionSustainability: React.FC<Props> = ({ id, isNightMode }) => {
   };
 
   const renderChart = (idx: number) => {
-    // Chart type mapping based on index
     if (idx === 0) {
         return (
           <ResponsiveContainer width="100%" height={280}>
@@ -140,7 +139,7 @@ const SectionSustainability: React.FC<Props> = ({ id, isNightMode }) => {
             </p>
             
             <div className="space-y-3">
-              {t.sustainabilitySystems.map((sys, idx) => (
+              {t.sustainabilitySystems.map((sys: any, idx: number) => (
                 <button 
                   key={idx}
                   onClick={() => setActiveTab(idx)}
@@ -168,7 +167,7 @@ const SectionSustainability: React.FC<Props> = ({ id, isNightMode }) => {
               
               <div className="mb-12">
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {t.sustainabilitySystems[activeTab].details.map((detail, i) => (
+                  {t.sustainabilitySystems[activeTab].details.map((detail: string, i: number) => (
                     <span key={i} className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
                       isNightMode ? 'bg-slate-800 text-cyan-400' : 'bg-slate-100 text-teal-600'
                     }`}>
