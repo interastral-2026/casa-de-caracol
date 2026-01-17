@@ -1,13 +1,19 @@
 
 export const translations = {
   pt: {
-    nav: { systems: 'Sistemas', products: 'Produtos', about: 'Sobre', contact: 'Contactos' },
+    nav: { systems: 'Sistemas', products: 'Produtos', about: 'Sobre', contact: 'Contactos', lab: 'Creative Lab' },
     hero: { title: 'A Porta Do', titleSuffix: 'Caracol', subtitle: 'Conheça os diferentes espaços que pode combinar' },
     about: { title: 'A Porta Do Caracol', subtitle: 'Habitar a Arte através da Arquitetura Biônica', description: 'A Porta do Caracol é a materialização de um novo paradigma de habitation. Não construímos casas; criamos Esculturas Habitacionais.', quote: 'Plantar Casa, Cultivar Vidas, Habitar a Arte.' },
     sustainability: { title: 'Tecnologia que Respira', label: 'Performance Eco', desc: 'Nossos sistemas integrados garantem uma pegada de carbono negativa.' },
     contact: { title: 'Contactos', desc: 'Entre em contacto connosco para orçamentos ou parcerias.', name: 'Nome', email: 'Email', phone: 'Telefone', message: 'Mensagem', send: 'Enviar Mensagem', success: 'Mensagem Enviada!' },
     footer: { rights: 'Todos os direitos reservados. Plantar Casa, Cultivar Vidas.' },
     chatbot: { helpBubble: 'Posso ajudar?', processing: 'A nossa equipa está a responder...', placeholder: 'Fale com a nossa equipa...', guide: 'Guia da Marca' },
+    billboard: { 
+      title: 'Projete o Seu Terreno', 
+      subtitle: 'Design de Esculturas Habitacionais',
+      desc: 'Use a nossa inteligência biónica para visualizar como as nossas estruturas se integram no seu espaço real.',
+      cta: 'ABRIR CREATIVE LAB'
+    },
     modules: {
       jacuzzi: { title: "Jacuzzi Caracol Neon", texts: ["Uma obra de arte funcional inspirada na geometria sagrada.", "Equipada com iluminação LED Neon em tom âmbar."] },
       cozinha: { title: "Cozinha Criativa e Ecológica", texts: ["Espaço eficiente, saudável e amigo da natureza.", "O coração da casa onde a sustentabilidade se encontra com a arte."] },
@@ -15,7 +21,7 @@ export const translations = {
       pool: { title: "Piscina Natural Solar", texts: ["Um espelho d’água que reflete o céu.", "Filtragem por plantas e bombas de baixo consumo."] },
       casa: { title: "Casa Caracol", texts: ["Ambiente criativo e relaxante.", "O design em espiral otimiza a luz e a ventilação."] },
       parede: { title: "Parede Artística", texts: ["Detalhes com textura natural.", "Projetado para o seu conforto."] },
-      mesa: { title: "Mobiliário S-CARGO", texts: ["Espaço de convivência ecológico.", "Design artístico integrado."] }
+      mesa: { title: "Mobiliário S-CARGO", texts: ["Espaço de convivência ecológico.", "Design artistic integrado."] }
     },
     infoCards: [
       { id: 'jacuzzi', title: 'Jacuzzi Caracol', description: 'Massagem natural.' },
@@ -32,6 +38,7 @@ export const translations = {
       lab: "CREATIVE LAB",
       question: "Como ficaria o seu terreno?",
       desc: "Envie-nos uma foto para projetarmos a integração.",
+      selectModule: "SELECIONAR MÓDULO",
       upload: "ENVIAR FOTO",
       generate: "PROJETAR",
       result: "Resultado",
@@ -41,13 +48,19 @@ export const translations = {
     }
   },
   en: {
-    nav: { systems: 'Systems', products: 'Products', about: 'About', contact: 'Contacts' },
+    nav: { systems: 'Systems', products: 'Products', about: 'About', contact: 'Contacts', lab: 'Creative Lab' },
     hero: { title: 'The Door of the', titleSuffix: 'Snail', subtitle: 'Discover combined spaces' },
     about: { title: 'The Snail Door', subtitle: 'Inhabiting Art', description: 'We create Inhabitable Sculptures.', quote: 'Plant a House, Cultivate Lives.' },
     sustainability: { title: 'Breathing Tech', label: 'Eco Performance', desc: 'Negative carbon footprint.' },
     contact: { title: 'Contacts', desc: 'Get in touch.', name: 'Name', email: 'Email', phone: 'Phone', message: 'Message', send: 'Send', success: 'Sent!' },
     footer: { rights: 'All rights reserved.' },
     chatbot: { helpBubble: 'Help?', processing: 'Thinking...', placeholder: 'Chat...', guide: 'Brand Guide' },
+    billboard: { 
+      title: 'Design Your Own Space', 
+      subtitle: 'Bionic Sculpture Design',
+      desc: 'Use our AI to visualize how our structures integrate with your real location.',
+      cta: 'OPEN CREATIVE LAB'
+    },
     modules: {
       jacuzzi: { title: "Snail Jacuzzi", texts: ["Functional art.", "Neon lighting."] },
       cozinha: { title: "Eco Kitchen", texts: ["Efficient and green.", "Heart of the home."] },
@@ -72,6 +85,7 @@ export const translations = {
       lab: "CREATIVE LAB",
       question: "Your land?",
       desc: "Send a photo.",
+      selectModule: "SELECT MODULE",
       upload: "UPLOAD",
       generate: "DESIGN",
       result: "Result",
@@ -81,13 +95,19 @@ export const translations = {
     }
   },
   es: {
-    nav: { systems: 'Sistemas', products: 'Productos', about: 'Sobre', contact: 'Contacto' },
+    nav: { systems: 'Sistemas', products: 'Productos', about: 'Sobre', contact: 'Contacto', lab: 'Creative Lab' },
     hero: { title: 'La Puerta del', titleSuffix: 'Caracol', subtitle: 'Descubre espacios' },
     about: { title: 'La Puerta del Caracol', subtitle: 'Habitar el Arte', description: 'Esculturas Habitables.', quote: 'Plantar Casa, Cultivar Vidas.' },
     sustainability: { title: 'Tecnología Viva', label: 'Eco', desc: 'Huella de carbono negativa.' },
     contact: { title: 'Contacto', desc: 'Contáctenos.', name: 'Nombre', email: 'Email', phone: 'Teléfono', message: 'Mensaje', send: 'Enviar', success: '¡Enviado!' },
     footer: { rights: 'Todos los derechos reservados.' },
     chatbot: { helpBubble: '¿Ayuda?', processing: 'Respondiendo...', placeholder: 'Habla...', guide: 'Guía' },
+    billboard: { 
+      title: 'Diseña Tu Propio Espacio', 
+      subtitle: 'Diseño Biónico Personalizado',
+      desc: 'Visualice nuestras estructuras integradas en su entorno real con IA.',
+      cta: 'ABRIR LAB'
+    },
     modules: {
       jacuzzi: { title: "Jacuzzi Caracol", texts: ["Obra de arte.", "LED Neon."] },
       cozinha: { title: "Cocina Eco", texts: ["Eficiente.", "Corazón del hogar."] },
@@ -112,6 +132,7 @@ export const translations = {
       lab: "CREATIVE LAB",
       question: "¿Tu terreno?",
       desc: "Foto.",
+      selectModule: "SELECCIONAR MÓDULO",
       upload: "SUBIR",
       generate: "DISEÑO",
       result: "Resultado",
@@ -121,13 +142,19 @@ export const translations = {
     }
   },
   fr: {
-    nav: { systems: 'Systèmes', products: 'Produits', about: 'Propos', contact: 'Contacts' },
+    nav: { systems: 'Systèmes', products: 'Produits', about: 'Propos', contact: 'Contacts', lab: 'Lab Créatif' },
     hero: { title: 'La Porte du', titleSuffix: 'Escargot', subtitle: 'Découvrez les espaces' },
     about: { title: 'La Porte du Caracol', subtitle: 'Habiter l\'Art', description: 'Sculptures Habitables.', quote: 'Habiter l\'Art.' },
     sustainability: { title: 'Technologie', label: 'Eco', desc: 'Carbone négatif.' },
     contact: { title: 'Contacts', desc: 'Contactez-nous.', name: 'Nom', email: 'Email', phone: 'Tel', message: 'Message', send: 'Envoyer', success: 'Envoyé!' },
     footer: { rights: 'Tous droits réservés.' },
     chatbot: { helpBubble: 'Aide?', processing: 'Réponse...', placeholder: 'Chat...', guide: 'Guide' },
+    billboard: { 
+      title: 'Concevez Votre Espace', 
+      subtitle: 'Design Bionique Sur Mesure',
+      desc: 'Visualisez nos structures intégrées dans votre environnement réel avec l\'IA.',
+      cta: 'OUVRIR LE LAB'
+    },
     modules: {
       jacuzzi: { title: "Jacuzzi Escargot", texts: ["Art fonctionnel.", "Néon."] },
       cozinha: { title: "Cuisine Éco", texts: ["Efficace.", "Cœur de maison."] },
@@ -152,6 +179,7 @@ export const translations = {
       lab: "CREATIVE LAB",
       question: "Terrain?",
       desc: "Photo.",
+      selectModule: "CHOISIR MODULE",
       upload: "CHARGER",
       generate: "PROJET",
       result: "Résultat",

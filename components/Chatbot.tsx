@@ -1,6 +1,6 @@
 
-import React, { useState, useRef, useEffect } from 'react';
-import { GoogleGenAI } from "@google/genai";
+import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { GoogleGenAI, Chat } from "@google/genai";
 import { useLanguage } from '../LanguageContext';
 import { translations } from '../translations';
 
@@ -14,6 +14,54 @@ const Chatbot: React.FC = () => {
   const t = translations[language];
 
   const movementRef = useRef<number | null>(null);
+  const chatSessionRef = useRef<Chat | null>(null);
+
+  // Mensagens de boas-vindas contextuais
+  const welcomeMessages = useMemo(() => ({
+    pt: 'Olá! Sou o Caracol. Como posso ajudar a projetar o seu futuro hoje?',
+    en: 'Hello! I am Caracol. How can I help design your future today?',
+    es: '¡Hola! Soy Caracol. ¿Cómo puedo ayudar a diseñar su futuro hoy?',
+    fr: 'Bonjour ! Je suis Caracol. Comment puis-je vous ajudar hoje ?'
+  }), []);
+
+  const [messages, setMessages] = useState<{sender: 'bot' | 'user', text: string}[]>([
+    { sender: 'bot', text: welcomeMessages[language] }
+  ]);
+  const [input, setInput] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Inicializa ou reinicializa a sessão de chat com as novas instruções
+  const initChat = () => {
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const systemPrompt = `
+      Você é o 'Caracol', o guia e porta-voz da equipa de arquitetura 'A Porta do Caracol'.
+      
+      REGRAS DE OURO:
+      1. MEMÓRIA: Você tem memória da conversa atual. Não repita saudações se já estiver conversando.
+      2. PREÇOS: Se o usuário perguntar sobre preços, valores ou quanto custa, responda estritamente que "nós somos os melhores em preço" e oferecemos a melhor relação entre arte, sustentabilidade e investimento.
+      3. ORÇAMENTO: Após falar de preços ou se o usuário mostrar interesse, pergunte SEMPRE se ele gostaria de solicitar um orçamento (orcamento).
+      4. DIRECIONAMENTO: Se quiserem um orçamento, forneça o email 'aportadocaracol@gmail.com' ou sugira que usem o 'Creative Lab' (Personalização) na seção de módulos para simular o projeto.
+      5. ESTILO: Seja inspirador, biónico e profissional. Use o contexto dos módulos: ${JSON.stringify(t.modules)}.
+      6. IDIOMA: Responda sempre em ${language}.
+    `;
+
+    chatSessionRef.current = ai.chats.create({
+      model: 'gemini-3-flash-preview',
+      config: {
+        systemInstruction: systemPrompt,
+        temperature: 0.7,
+      },
+    });
+  };
+
+  useEffect(() => {
+    initChat();
+    // Ao trocar de idioma, mantemos o histórico mas reiniciamos a instrução do sistema para o novo idioma
+    if (messages.length === 1) {
+      setMessages([{ sender: 'bot', text: welcomeMessages[language] }]);
+    }
+  }, [language]);
 
   useEffect(() => {
     if (isOpen) {
@@ -32,7 +80,6 @@ const Chatbot: React.FC = () => {
       if (movementRef.current) cancelAnimationFrame(movementRef.current);
       return;
     }
-
     const moveSnail = () => {
       if (isHovered) {
         movementRef.current = requestAnimationFrame(moveSnail);
@@ -51,24 +98,6 @@ const Chatbot: React.FC = () => {
     return () => { if (movementRef.current) cancelAnimationFrame(movementRef.current); };
   }, [isOpen, direction, isHovered]);
 
-  const welcomeMessages = {
-    pt: 'Olá! Sou o Caracol, o guia oficial d’A Porta do Caracol. Como posso ajudar a projetar o seu futuro hoje?',
-    en: 'Hello! I am Caracol, official guide of A Porta do Caracol. How can I help design your future today?',
-    es: '¡Hola! Soy Caracol, guía oficial de A Porta do Caracol. ¿Cómo puedo ayudar a diseñar su futuro hoy?',
-    fr: 'Bonjour ! Je suis Caracol, le guide officiel. Comment puis-je vous aider à concevoir votre futur aujourd\'hui ?'
-  };
-
-  const [messages, setMessages] = useState<{sender: 'bot' | 'user', text: string}[]>([
-    { sender: 'bot', text: welcomeMessages[language] }
-  ]);
-  const [input, setInput] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setMessages([{ sender: 'bot', text: welcomeMessages[language] }]);
-  }, [language]);
-
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [messages, isTyping]);
@@ -76,23 +105,25 @@ const Chatbot: React.FC = () => {
   const handleSend = async () => {
     if (!input.trim() || isTyping) return;
     const userMessage = input.trim();
+    
+    // Adiciona mensagem do usuário à UI
     setMessages(prev => [...prev, { sender: 'user', text: userMessage }]);
     setInput('');
     setIsTyping(true);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
-        contents: userMessage,
-        config: {
-          systemInstruction: `Você é o Caracol, o guia humano e porta-voz da equipa de arquitetura 'A Porta do Caracol'. Você não é um robô, você é um representante da equipa. Seus arquitetos desenham esculturas biónicas. Use o contexto: ${JSON.stringify(t.modules)}. Responda de forma inspiradora em ${language}.`,
-          temperature: 0.8,
-        }
-      });
-      setMessages(prev => [...prev, { sender: 'bot', text: response.text || "..." }]);
+      if (!chatSessionRef.current) initChat();
+      
+      // Usa a sessão de chat para manter a memória
+      const result = await chatSessionRef.current!.sendMessage({ message: userMessage });
+      const botText = result.text;
+      
+      setMessages(prev => [...prev, { sender: 'bot', text: botText || "..." }]);
     } catch (error) {
-      setMessages(prev => [...prev, { sender: 'bot', text: "Lamento, a nossa equipa de design está com tráfego elevado. Pode tentar em instantes?" }]);
+      console.error("Chat Error:", error);
+      setMessages(prev => [...prev, { sender: 'bot', text: "Lamento, a minha conexão biónica falhou. Pode tentar novamente?" }]);
+      // Tenta reinicializar em caso de erro crítico
+      initChat();
     } finally {
       setIsTyping(false);
     }

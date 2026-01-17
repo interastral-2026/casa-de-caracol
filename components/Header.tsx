@@ -7,9 +7,10 @@ interface HeaderProps {
   isVisible: boolean;
   isNightMode: boolean;
   onToggleTheme: () => void;
+  onOpenLab: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ isVisible, isNightMode, onToggleTheme }) => {
+const Header: React.FC<HeaderProps> = ({ isVisible, isNightMode, onToggleTheme, onOpenLab }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
@@ -126,7 +127,7 @@ const Header: React.FC<HeaderProps> = ({ isVisible, isNightMode, onToggleTheme }
         </div>
 
         <nav className="hidden lg:flex items-center gap-8">
-          <div className="flex gap-6">
+          <div className="flex gap-6 items-center">
             {navLinks.map((link) => (
               <a 
                 key={link.name} 
@@ -139,6 +140,16 @@ const Header: React.FC<HeaderProps> = ({ isVisible, isNightMode, onToggleTheme }
                 <span className="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-cyan-400 transition-all group-hover:w-full" />
               </a>
             ))}
+            
+            <button 
+              onClick={onOpenLab}
+              className={`px-5 py-2 rounded-full border-2 font-orbitron font-bold text-[9px] tracking-widest transition-all animate-pulse
+                ${isNightMode 
+                  ? 'border-cyan-500/50 text-cyan-400 hover:bg-cyan-500 hover:text-white' 
+                  : 'border-teal-500/50 text-teal-600 hover:bg-teal-500 hover:text-white'}`}
+            >
+              {t.nav.lab?.toUpperCase()}
+            </button>
           </div>
 
           <div className={`w-px h-8 ${isNightMode ? 'bg-white/10' : 'bg-slate-200'}`} />
@@ -181,16 +192,13 @@ const Header: React.FC<HeaderProps> = ({ isVisible, isNightMode, onToggleTheme }
         ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
         <div className="absolute inset-0 bg-black/40 backdrop-blur-md" onClick={() => setIsMenuOpen(false)} />
         
-        <div className={`relative w-full h-fit max-h-[80vh] p-10 flex flex-col transform transition-all duration-700 ease-out border-b backdrop-blur-[40px]
+        <div className={`relative w-full h-fit max-h-[90vh] p-10 flex flex-col transform transition-all duration-700 ease-out border-b backdrop-blur-[40px]
           ${isNightMode 
             ? 'bg-[#00001e]/60 border-cyan-500/20 shadow-[0_20px_50px_rgba(6,182,212,0.15)]' 
             : 'bg-white/70 border-slate-200 shadow-xl'}
           ${isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
           
-          <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full blur-[100px] opacity-20 pointer-events-none
-            ${isNightMode ? 'bg-cyan-500' : 'bg-teal-400'}`} />
-
-          <div className="relative z-10 flex flex-col gap-8 items-center text-center">
+          <div className="relative z-10 flex flex-col gap-6 items-center text-center">
             {navLinks.map((link, idx) => (
               <a 
                 key={link.name} 
@@ -204,6 +212,16 @@ const Header: React.FC<HeaderProps> = ({ isVisible, isNightMode, onToggleTheme }
                 {link.name.toUpperCase()}
               </a>
             ))}
+            
+            <button 
+              onClick={() => { onOpenLab(); setIsMenuOpen(false); }}
+              className={`mt-4 px-8 py-4 rounded-full border-2 font-orbitron font-bold text-xs tracking-widest transition-all
+                ${isNightMode 
+                  ? 'border-cyan-500 text-cyan-400 bg-cyan-500/10' 
+                  : 'border-teal-500 text-teal-600 bg-teal-500/10'}`}
+            >
+              {t.nav.lab?.toUpperCase()}
+            </button>
           </div>
         </div>
       </div>

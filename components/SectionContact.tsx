@@ -85,7 +85,7 @@ const SectionContact: React.FC<Props> = ({ id, isNightMode }) => {
                   <div>
                     <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1">Localização</div>
                     <span className={`text-lg font-medium ${isNightMode ? 'text-slate-200' : 'text-slate-800'}`}>
-                      Lisboa, Portugal
+                      Portugal
                     </span>
                   </div>
                 </div>

@@ -4,20 +4,19 @@ import { MODULE_DATA } from '../constants';
 import { ModuleKey } from '../types';
 import { useLanguage, Language } from '../LanguageContext';
 import { translations } from '../translations';
-import CustomizerModal from './CustomizerModal';
 
 interface Props { 
   id: string;
   isNightMode: boolean;
+  onOpenCustomizer: (key: ModuleKey) => void;
 }
 
-const SectionModules: React.FC<Props> = ({ id, isNightMode }) => {
+const SectionModules: React.FC<Props> = ({ id, isNightMode, onOpenCustomizer }) => {
   const { language } = useLanguage();
   const t = translations[language as Language];
   const [selectedModule, setSelectedModule] = useState<ModuleKey | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isInfoVisible, setIsInfoVisible] = useState(false);
-  const [isCustomizerOpen, setIsCustomizerOpen] = useState(false);
   
   const [isCardDragging, setIsCardDragging] = useState(false);
   const [isVideoDragging, setIsVideoDragging] = useState(false);
@@ -288,7 +287,7 @@ const SectionModules: React.FC<Props> = ({ id, isNightMode }) => {
               </div>
               <div className="mt-10 pt-8 border-t border-white/5">
                 <button 
-                  onClick={() => setIsCustomizerOpen(true)}
+                  onClick={() => selectedModule && onOpenCustomizer(selectedModule)}
                   className={`w-full py-4 rounded-xl font-orbitron font-bold text-[9px] tracking-[0.3em] uppercase transition-all ${isNightMode ? 'bg-cyan-600 text-white shadow-cyan-600/10 hover:shadow-cyan-600/30' : 'bg-teal-600 text-white shadow-lg'}`}
                 >
                   {language === 'pt' ? 'PERSONALIZAR O MEU CARACOL' : (language === 'en' ? 'CUSTOMIZE MY SNAIL' : (language === 'es' ? 'PERSONALIZAR' : 'PERSONNALISER'))}
@@ -298,14 +297,6 @@ const SectionModules: React.FC<Props> = ({ id, isNightMode }) => {
           </div>
         </div>
       </div>
-
-      <CustomizerModal 
-        isOpen={isCustomizerOpen}
-        onClose={() => setIsCustomizerOpen(false)}
-        module={currentModuleTechnical}
-        localizedModule={currentModuleInfo}
-        isNightMode={isNightMode}
-      />
     </section>
   );
 };
