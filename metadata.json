@@ -1,0 +1,8 @@
+
+{
+  "name": "A Porta do Caracol - Arquitetura Biónica e Sustentável",
+  "description": "Portfólio de luxo de arquitetura biónica modular e sustentável. Esculturas habitacionais desenhadas pela nossa equipa de design.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
