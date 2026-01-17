@@ -58,6 +58,13 @@
 </script>
 </head>
 <body class="bg-[#0b1220] text-white overflow-x-hidden">
+    <!-- Formulário Oculto para o Netlify Bot -->
+    <form name="contact-form" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
 </body>

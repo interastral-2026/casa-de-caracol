@@ -14,7 +14,8 @@ const SectionContact: React.FC<Props> = ({ id, isNightMode }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
+    'bot-field': '' // Honeypot para evitar spam
   });
 
   const { language } = useLanguage();
@@ -36,18 +37,26 @@ const SectionContact: React.FC<Props> = ({ id, isNightMode }) => {
     setIsSubmitting(true);
 
     try {
-      // Envio Real para o Netlify Forms
-      await fetch("/", {
+      // Submissão via AJAX para o Netlify
+      // Enviamos para a raiz "/" e o Netlify captura baseado no campo "form-name"
+      const response = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode({ "form-name": "contact-form", ...formData })
+        body: encode({ 
+          "form-name": "contact-form", 
+          ...formData 
+        })
       });
       
-      setSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
+      if (response.ok) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', message: '', 'bot-field': '' });
+      } else {
+        throw new Error("Falha na submissão");
+      }
     } catch (error) {
       console.error("Erro ao enviar para Netlify:", error);
-      alert(language === 'pt' ? "Erro ao enviar. Tente novamente." : "Error sending message. Please try again.");
+      alert(language === 'pt' ? "Erro ao enviar. Tente novamente ou envie email direto." : "Error sending message. Please try again or email us directly.");
     } finally {
       setIsSubmitting(false);
     }
@@ -108,11 +117,15 @@ const SectionContact: React.FC<Props> = ({ id, isNightMode }) => {
                   name="contact-form"
                   method="POST"
                   data-netlify="true"
+                  data-netlify-honeypot="bot-field"
                   onSubmit={handleSubmit} 
                   className="space-y-6"
                 >
                   {/* Campo oculto necessário para o Netlify identificar o formulário no React */}
                   <input type="hidden" name="form-name" value="contact-form" />
+                  <p className="hidden">
+                    <label>Don’t fill this out if you’re human: <input name="bot-field" onChange={handleInputChange} /></label>
+                  </p>
                   
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
