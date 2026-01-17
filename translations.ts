@@ -9,186 +9,155 @@ export const translations = {
     footer: { rights: 'Todos os direitos reservados. Plantar Casa, Cultivar Vidas.' },
     chatbot: { helpBubble: 'Posso ajudar?', processing: 'A nossa equipa está a responder...', placeholder: 'Fale com a nossa equipa...', guide: 'Guia da Marca' },
     modules: {
-      jacuzzi: {
-        title: "Jacuzzi Caracol Neon",
-        texts: ["Uma obra de arte funcional inspirada na geometria sagrada. O fluxo espiral da água proporciona uma massagem natural.", "Equipada com iluminação LED Neon em tom âmbar."]
-      },
-      cozinha: {
-        title: "Cozinha Criativa e Ecológica",
-        texts: ["Espaço eficiente, saudável e amigo da natureza. Construída com cimento reciclado e design acolhedor.", "O coração da casa onde a sustentabilidade se encontra com a arte."]
-      },
-      wc: {
-        title: "Casa de Banho Sustentável",
-        texts: ["Design minimalista com materiais reciclados, higiénico e relaxante.", "Sistemas de baixo consumo de água."]
-      },
-      pool: {
-        title: "Piscina Natural Solar",
-        texts: ["Um espelho d’água que reflete o céu e a arquitetura viva da casa.", "Filtragem por plantas e bombas de baixo consumo."]
-      },
-      casa: {
-        title: "Casa Caracol",
-        texts: ["Ambiente criativo e relaxante, com materiais reciclados e arte natural.", "O design em espiral otimiza a luz e a ventilação."]
-      },
-      parede: {
-        title: "Parede Artística",
-        texts: ["Detalhes com textura natural e estética sustentável.", "Cada detalhe foi projetado para o seu conforto."]
-      },
-      mesa: {
-        title: "Mobiliário S-CARGO",
-        texts: ["Espaço de convivência ecológico feito com materiais reciclados.", "Design artístico integrado."]
-      }
+      jacuzzi: { title: "Jacuzzi Caracol Neon", texts: ["Uma obra de arte funcional inspirada na geometria sagrada.", "Equipada com iluminação LED Neon em tom âmbar."] },
+      cozinha: { title: "Cozinha Criativa e Ecológica", texts: ["Espaço eficiente, saudável e amigo da natureza.", "O coração da casa onde a sustentabilidade se encontra com a arte."] },
+      wc: { title: "Casa de Banho Sustentável", texts: ["Design minimalista com materiais reciclados.", "Sistemas de baixo consumo de água."] },
+      pool: { title: "Piscina Natural Solar", texts: ["Um espelho d’água que reflete o céu.", "Filtragem por plantas e bombas de baixo consumo."] },
+      casa: { title: "Casa Caracol", texts: ["Ambiente criativo e relaxante.", "O design em espiral otimiza a luz e a ventilação."] },
+      parede: { title: "Parede Artística", texts: ["Detalhes com textura natural.", "Projetado para o seu conforto."] },
+      mesa: { title: "Mobiliário S-CARGO", texts: ["Espaço de convivência ecológico.", "Design artístico integrado."] }
     },
     infoCards: [
-      { id: 'jacuzzi', title: 'Jacuzzi Caracol', description: 'Massagem natural e relaxamento profundo.' },
-      { id: 'cozinha', title: 'Cozinha', description: 'Coração da casa, saudável e ecológico.' },
-      { id: 'casa', title: 'Casa Caracol', description: 'O design em espiral que respira.' },
-      { id: 'pool', title: 'Piscina', description: 'Espelho d’água com reflexos neon.' }
+      { id: 'jacuzzi', title: 'Jacuzzi Caracol', description: 'Massagem natural.' },
+      { id: 'cozinha', title: 'Cozinha', description: 'Saudável e ecológico.' },
+      { id: 'casa', title: 'Casa Caracol', description: 'Design que respira.' },
+      { id: 'pool', title: 'Piscina', description: 'Reflexos neon.' }
     ],
     sustainabilitySystems: [
-      { title: "ISOLAMENTO", subtitle: "ISOCEL — Papel reciclado", details: ["Alta Performance", "100% ecológico", "Sustentabilidade Pura"] },
-      { title: "ENERGIA", subtitle: "SFI • Aerogeradores", details: ["Autonomia Total", "Energia Limpa", "Gestão via App"] },
-      { title: "ÁGUA", subtitle: "Ciclo Fechado", details: ["Recuperação Pluvial", "Bio-filtragem", "Jardim Vivo"] }
+      { title: "ISOLAMENTO", subtitle: "ISOCEL", details: ["Alta Performance", "Ecológico"] },
+      { title: "ENERGIA", subtitle: "SFI", details: ["Autonomia Total", "Energia Limpa"] },
+      { title: "ÁGUA", subtitle: "Ciclo Fechado", details: ["Recuperação Pluvial", "Bio-filtragem"] }
     ],
     customizer: {
       lab: "CREATIVE LAB",
       question: "Como ficaria o seu terreno?",
-      desc: "Envie-nos uma foto. A nossa equipa de arquitetura irá projetar a integração deste módulo no seu espaço real.",
-      upload: "ENVIAR FOTO DO MEU TERRENO",
-      generate: "PROJETAR INTEGRAÇÃO NO MEU ESPAÇO",
-      result: "O projeto personalizado aparecerá aqui",
-      download: "GUARDAR PROJETO",
-      order: "SOLICITAR ORÇAMENTO DESTE MÓDULO",
-      loading: [
-        "A nossa equipa de arquitetura está a analisar a topografia...",
-        "A desenhar a escultura biónica no seu ambiente...",
-        "A harmonizar a luz e as texturas naturais...",
-        "A finalizar a sua visualização personalizada..."
-      ]
+      desc: "Envie-nos uma foto para projetarmos a integração.",
+      upload: "ENVIAR FOTO",
+      generate: "PROJETAR",
+      result: "Resultado",
+      download: "GUARDAR",
+      order: "ORÇAMENTO",
+      loading: ["Analisando...", "Desenhando...", "Harmonizando...", "Finalizando..."]
     }
   },
   en: {
     nav: { systems: 'Systems', products: 'Products', about: 'About', contact: 'Contacts' },
-    hero: { title: 'The Door of the', titleSuffix: 'Snail', subtitle: 'Discover the spaces designed for you' },
-    about: { title: 'The Snail Door', subtitle: 'Inhabiting Art through Bionic Architecture', description: 'The Snail Door is the embodiment of a new housing paradigm. We create Inhabitable Sculptures.', quote: 'Plant a House, Cultivate Lives, Inhabit Art.' },
-    sustainability: { title: 'Technology that Breathes', label: 'Eco Performance', desc: 'Our systems ensure a negative carbon footprint.' },
-    contact: { title: 'Contacts', desc: 'Get in touch for quotes or partnerships.', name: 'Name', email: 'Email', phone: 'Phone', message: 'Message', send: 'Send Message', success: 'Message Sent!' },
+    hero: { title: 'The Door of the', titleSuffix: 'Snail', subtitle: 'Discover combined spaces' },
+    about: { title: 'The Snail Door', subtitle: 'Inhabiting Art', description: 'We create Inhabitable Sculptures.', quote: 'Plant a House, Cultivate Lives.' },
+    sustainability: { title: 'Breathing Tech', label: 'Eco Performance', desc: 'Negative carbon footprint.' },
+    contact: { title: 'Contacts', desc: 'Get in touch.', name: 'Name', email: 'Email', phone: 'Phone', message: 'Message', send: 'Send', success: 'Sent!' },
     footer: { rights: 'All rights reserved.' },
-    chatbot: { helpBubble: 'Can I help?', processing: 'Our team is responding...', placeholder: 'Chat with us...', guide: 'Brand Guide' },
+    chatbot: { helpBubble: 'Help?', processing: 'Thinking...', placeholder: 'Chat...', guide: 'Brand Guide' },
     modules: {
-      jacuzzi: { title: "Snail Jacuzzi", texts: ["Sacred geometry work of art.", "Equipped with Neon LED lighting."] },
-      cozinha: { title: "Eco Kitchen", texts: ["Efficient and nature-friendly space.", "The heart of the home."] },
-      wc: { title: "Bionic Bathroom", texts: ["Minimalist design with recycled materials.", "Water saving system."] },
-      pool: { title: "Solar Pool", texts: ["Water mirror reflecting the sky.", "Plant-based filtration."] },
-      casa: { title: "Snail House", texts: ["Creative and relaxing environment.", "Optimal light and ventilation."] },
-      parede: { title: "Artistic Wall", texts: ["Natural textures and sustainable aesthetics.", "Designed for comfort."] },
-      mesa: { title: "S-CARGO Furniture", texts: ["Ecological living space.", "Integrated artistic design."] }
+      jacuzzi: { title: "Snail Jacuzzi", texts: ["Functional art.", "Neon lighting."] },
+      cozinha: { title: "Eco Kitchen", texts: ["Efficient and green.", "Heart of the home."] },
+      wc: { title: "Bionic WC", texts: ["Minimalist.", "Water saving."] },
+      pool: { title: "Solar Pool", texts: ["Water mirror.", "Natural filtration."] },
+      casa: { title: "Snail House", texts: ["Creative environment.", "Optimal ventilation."] },
+      parede: { title: "Art Wall", texts: ["Natural texture.", "Comfort design."] },
+      mesa: { title: "S-CARGO Furniture", texts: ["Eco living.", "Art design."] }
     },
     infoCards: [
-      { id: 'jacuzzi', title: 'Snail Jacuzzi', description: 'Natural massage and relaxation.' },
-      { id: 'cozinha', title: 'Kitchen', description: 'Heart of the home.' },
+      { id: 'jacuzzi', title: 'Snail Jacuzzi', description: 'Natural massage.' },
+      { id: 'cozinha', title: 'Kitchen', description: 'Healthy and eco.' },
       { id: 'casa', title: 'Snail House', description: 'Design that breathes.' },
-      { id: 'pool', title: 'Pool', description: 'Reflections and serenity.' }
+      { id: 'pool', title: 'Pool', description: 'Neon reflections.' }
     ],
     sustainabilitySystems: [
-      { title: "INSULATION", subtitle: "ISOCEL — Recycled", details: ["High Performance", "100% Eco", "Pure Sustainability"] },
-      { title: "ENERGY", subtitle: "SFI • Wind", details: ["Total Autonomy", "Clean Energy", "App Control"] },
-      { title: "WATER", subtitle: "Closed Cycle", details: ["Rain Recovery", "Bio-filtration", "Living Garden"] }
+      { title: "INSULATION", subtitle: "ISOCEL", details: ["High Performance", "Eco"] },
+      { title: "ENERGY", subtitle: "SFI", details: ["Total Autonomy", "Clean Energy"] },
+      { title: "WATER", subtitle: "Closed Cycle", details: ["Rain Recovery", "Bio-filtration"] }
     ],
     customizer: {
       lab: "CREATIVE LAB",
-      question: "How would your space look?",
-      desc: "Send a photo. Our architecture team will design the integration of this module into your real space.",
-      upload: "UPLOAD MY SPACE PHOTO",
-      generate: "REQUEST TEAM DESIGN INTEGRATION",
-      result: "Your custom design will appear here",
-      download: "SAVE DESIGN",
-      order: "REQUEST MODULE QUOTE",
-      loading: [
-        "Our architecture team is analyzing topography...",
-        "Designing the bionic sculpture in your environment...",
-        "Harmonizing light and natural textures...",
-        "Finalizing your personalized visualization..."
-      ]
+      question: "Your land?",
+      desc: "Send a photo.",
+      upload: "UPLOAD",
+      generate: "DESIGN",
+      result: "Result",
+      download: "SAVE",
+      order: "QUOTE",
+      loading: ["Analyzing...", "Designing...", "Finalizing..."]
     }
   },
   es: {
     nav: { systems: 'Sistemas', products: 'Productos', about: 'Sobre', contact: 'Contacto' },
-    hero: { title: 'La Puerta del', titleSuffix: 'Caracol', subtitle: 'Descubre los espacios diseñados para ti' },
-    about: { title: 'La Puerta del Caracol', subtitle: 'Habitar el Arte a través de la Arquitectura Biónica', description: 'La Puerta del Caracol es la materialización de un nuevo paradigma habitacional. No construimos casas; creamos Esculturas Habitables.', quote: 'Plantar Casa, Cultivar Vidas, Habitar el Arte.' },
-    sustainability: { title: 'Tecnología que Respira', label: 'Desempeño Eco', desc: 'Nuestros sistemas garantizan una huella de carbono negativa.' },
-    contact: { title: 'Contacto', desc: 'Contáctenos para presupuestos o colaboraciones.', name: 'Nombre', email: 'Email', phone: 'Teléfono', message: 'Mensaje', send: 'Enviar Mensaje', success: '¡Mensaje Enviado!' },
+    hero: { title: 'La Puerta del', titleSuffix: 'Caracol', subtitle: 'Descubre espacios' },
+    about: { title: 'La Puerta del Caracol', subtitle: 'Habitar el Arte', description: 'Esculturas Habitables.', quote: 'Plantar Casa, Cultivar Vidas.' },
+    sustainability: { title: 'Tecnología Viva', label: 'Eco', desc: 'Huella de carbono negativa.' },
+    contact: { title: 'Contacto', desc: 'Contáctenos.', name: 'Nombre', email: 'Email', phone: 'Teléfono', message: 'Mensaje', send: 'Enviar', success: '¡Enviado!' },
     footer: { rights: 'Todos los derechos reservados.' },
-    chatbot: { helpBubble: '¿Puedo ayudar?', processing: 'Nuestro equipo está respondiendo...', placeholder: 'Habla con nosotros...', guide: 'Guía de Marca' },
+    chatbot: { helpBubble: '¿Ayuda?', processing: 'Respondiendo...', placeholder: 'Habla...', guide: 'Guía' },
     modules: {
-      jacuzzi: { title: "Jacuzzi Caracol", texts: ["Obra de arte funcional inspirada en la geometría sagrada.", "Equipada con iluminación LED Neon."] },
-      cozinha: { title: "Cocina Eco", texts: ["Espacio eficiente y amigable con la naturaleza.", "El corazón del hogar."] },
-      wc: { title: "Baño Biónico", texts: ["Diseño minimalista con materiales reciclados.", "Sistema de ahorro de agua."] },
-      pool: { title: "Piscina Solar", texts: ["Espejo de agua que refleja el cielo.", "Filtración por plantas."] },
-      casa: { title: "Casa Caracol", texts: ["Ambiente creativo y relajante.", "Luz y ventilación óptimas."] },
-      parede: { title: "Pared Artística", texts: ["Texturas naturales y estética sostenible.", "Diseñado para su confort."] },
-      mesa: { title: "Mobiliario S-CARGO", texts: ["Espacio de convivencia ecológico.", "Diseño artístico integrado."] }
+      jacuzzi: { title: "Jacuzzi Caracol", texts: ["Obra de arte.", "LED Neon."] },
+      cozinha: { title: "Cocina Eco", texts: ["Eficiente.", "Corazón del hogar."] },
+      wc: { title: "Baño Biónico", texts: ["Minimalista.", "Ahorro de agua."] },
+      pool: { title: "Piscina Solar", texts: ["Espejo de agua.", "Filtración natural."] },
+      casa: { title: "Casa Caracol", texts: ["Ambiente creativo.", "Ventilación."] },
+      parede: { title: "Pared Artística", texts: ["Textura natural.", "Confort."] },
+      mesa: { title: "Mesa S-CARGO", texts: ["Convivencia.", "Arte."] }
     },
     infoCards: [
-      { id: 'jacuzzi', title: 'Jacuzzi Caracol', description: 'Masaje natural y relajación.' },
-      { id: 'cozinha', title: 'Cocina', description: 'Corazón del hogar.' },
-      { id: 'casa', title: 'Casa Caracol', description: 'Diseño que respira.' },
-      { id: 'pool', title: 'Piscina', description: 'Serenidad y reflejos.' }
+      { id: 'jacuzzi', title: 'Jacuzzi', description: 'Relax.' },
+      { id: 'cozinha', title: 'Cocina', description: 'Eco.' },
+      { id: 'casa', title: 'Casa', description: 'Breathes.' },
+      { id: 'pool', title: 'Piscina', description: 'Neon.' }
     ],
     sustainabilitySystems: [
-      { title: "AISLAMIENTO", subtitle: "ISOCEL — Reciclado", details: ["Alto Desempeño", "100% Eco", "Sostenibilidad Pura"] },
-      { title: "ENERGÍA", subtitle: "SFI • Eólico", details: ["Autonomía Total", "Energía Limpia", "Gestión vía App"] },
-      { title: "AGUA", subtitle: "Ciclo Cerrado", details: ["Recuperación Pluvial", "Bio-filtración", "Jardín Vivo"] }
+      { title: "AISLAMIENTO", subtitle: "ISOCEL", details: ["Ecológico"] },
+      { title: "ENERGÍA", subtitle: "SFI", details: ["Limpia"] },
+      { title: "AGUA", subtitle: "Ciclo", details: ["Filtración"] }
     ],
     customizer: {
       lab: "CREATIVE LAB",
-      question: "¿Cómo se vería tu terreno?",
-      desc: "Envíanos una foto. Nuestro equipo diseñará la integración de este módulo en tu espacio real.",
-      upload: "SUBIR FOTO DE MI TERRENO",
-      generate: "PROYECTAR INTEGRACIÓN",
-      result: "Tu diseño aparecerá aquí",
-      download: "GUARDAR PROYECTO",
-      order: "SOLICITAR PRESUPUESTO",
-      loading: ["Analizando topografía...", "Diseñando escultura...", "Armonizando texturas...", "Finalizando..."]
+      question: "¿Tu terreno?",
+      desc: "Foto.",
+      upload: "SUBIR",
+      generate: "DISEÑO",
+      result: "Resultado",
+      download: "GUARDAR",
+      order: "PRESUPUESTO",
+      loading: ["Analizando...", "Finalizando..."]
     }
   },
   fr: {
-    nav: { systems: 'Systèmes', products: 'Produits', about: 'À Propos', contact: 'Contacts' },
-    hero: { title: 'La Porte du', titleSuffix: 'Escargot', subtitle: 'Découvrez les espaces conçus pour vous' },
-    about: { title: 'La Porte du Caracol', subtitle: 'Habiter l\'Art par l\'Architecture Bionique', description: 'La Porte du Caracol est l\'incarnation d\'un nouveau paradigme de l\'habitat. Nous créons des Sculptures Habitables.', quote: 'Planter une Maison, Cultiver des Vies, Habiter l\'Art.' },
-    sustainability: { title: 'Technologie qui Respire', label: 'Performance Éco', desc: 'Nos systèmes garantissent une empreinte carbone négative.' },
-    contact: { title: 'Contacts', desc: 'Contactez-nous pour des devis ou des partenariats.', name: 'Nom', email: 'Email', phone: 'Téléphone', message: 'Message', send: 'Envoyer Message', success: 'Message Envoyé!' },
+    nav: { systems: 'Systèmes', products: 'Produits', about: 'Propos', contact: 'Contacts' },
+    hero: { title: 'La Porte du', titleSuffix: 'Escargot', subtitle: 'Découvrez les espaces' },
+    about: { title: 'La Porte du Caracol', subtitle: 'Habiter l\'Art', description: 'Sculptures Habitables.', quote: 'Habiter l\'Art.' },
+    sustainability: { title: 'Technologie', label: 'Eco', desc: 'Carbone négatif.' },
+    contact: { title: 'Contacts', desc: 'Contactez-nous.', name: 'Nom', email: 'Email', phone: 'Tel', message: 'Message', send: 'Envoyer', success: 'Envoyé!' },
     footer: { rights: 'Tous droits réservés.' },
-    chatbot: { helpBubble: 'Puis-je vous aider?', processing: 'Notre équipe répond...', placeholder: 'Discutez avec nous...', guide: 'Guide de Marque' },
+    chatbot: { helpBubble: 'Aide?', processing: 'Réponse...', placeholder: 'Chat...', guide: 'Guide' },
     modules: {
-      jacuzzi: { title: "Jacuzzi Escargot", texts: ["Œuvre d'art fonctionnelle inspirée de la géométrie sacrée.", "Équipé d'un éclairage LED Néon."] },
-      cozinha: { title: "Cuisine Éco", texts: ["Espace efficace et respectueux de la nature.", "Le cœur de la maison."] },
-      wc: { title: "Salle de Bain Bionique", texts: ["Design minimaliste avec matériaux recyclés.", "Système d'économie d'eau."] },
-      pool: { title: "Piscine Solaire", texts: ["Miroir d'eau reflétant le ciel.", "Filtration par les plantes."] },
-      casa: { title: "Maison Escargot", texts: ["Environnement créatif et relaxant.", "Lumière et ventilation optimales."] },
-      parede: { title: "Mur Artistique", texts: ["Textures naturelles et esthétique durable.", "Conçu pour votre confort."] },
-      mesa: { title: "Mobilier S-CARGO", texts: ["Espace de vie écologique.", "Design artistique intégré."] }
+      jacuzzi: { title: "Jacuzzi Escargot", texts: ["Art fonctionnel.", "Néon."] },
+      cozinha: { title: "Cuisine Éco", texts: ["Efficace.", "Cœur de maison."] },
+      wc: { title: "WC Bionique", texts: ["Minimaliste.", "Eau."] },
+      pool: { title: "Piscine Solaire", texts: ["Miroir d'eau.", "Plantes."] },
+      casa: { title: "Maison Escargot", texts: ["Créatif.", "Ventilation."] },
+      parede: { title: "Mur Art", texts: ["Naturel.", "Confort."] },
+      mesa: { title: "Table S-CARGO", texts: ["Éco.", "Art."] }
     },
     infoCards: [
-      { id: 'jacuzzi', title: 'Jacuzzi Escargot', description: 'Massage naturel et relaxation.' },
-      { id: 'cozinha', title: 'Cuisine', description: 'Cœur de la maison.' },
-      { id: 'casa', title: 'Maison Escargot', description: 'Design qui respire.' },
-      { id: 'pool', title: 'Piscine', description: 'Sérénité et reflets.' }
+      { id: 'jacuzzi', title: 'Jacuzzi', description: 'Relax.' },
+      { id: 'cozinha', title: 'Cuisine', description: 'Éco.' },
+      { id: 'casa', title: 'Maison', description: 'Design.' },
+      { id: 'pool', title: 'Piscine', description: 'Néon.' }
     ],
     sustainabilitySystems: [
-      { title: "ISOLATION", subtitle: "ISOCEL — Recyclé", details: ["Haute Performance", "100% Éco", "Soutenabilité Pure"] },
-      { title: "ÉNERGIE", subtitle: "SFI • Éolien", details: ["Autonomie Totale", "Énergie Propre", "Gestion via App"] },
-      { title: "EAU", subtitle: "Cycle Fermé", details: ["Récupération Pluviale", "Bio-filtration", "Jardin Vivant"] }
+      { title: "ISOLATION", subtitle: "ISOCEL", details: ["Éco"] },
+      { title: "ÉNERGIE", subtitle: "SFI", details: ["Propre"] },
+      { title: "EAU", subtitle: "Cycle", details: ["Filtrage"] }
     ],
     customizer: {
       lab: "CREATIVE LAB",
-      question: "À quoi ressemblerait votre terrain ?",
-      desc: "Envoyez-nous une photo. Notre équipe concevra l'intégration de ce module.",
-      upload: "TÉLÉCHARGER MA PHOTO",
-      generate: "PROJETER L'INTÉGRATION",
-      result: "Votre projet apparaîtra ici",
-      download: "ENREGISTRER",
-      order: "DEMANDER UN DEVIS",
-      loading: ["Analyse de topographie...", "Dessin de sculpture...", "Harmonisation...", "Finalisation..."]
+      question: "Terrain?",
+      desc: "Photo.",
+      upload: "CHARGER",
+      generate: "PROJET",
+      result: "Résultat",
+      download: "SAUVER",
+      order: "DEVIS",
+      loading: ["Analyse...", "Finalisation..."]
     }
   }
 };
