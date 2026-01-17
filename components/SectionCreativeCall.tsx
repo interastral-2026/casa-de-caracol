@@ -52,16 +52,28 @@ const SectionCreativeCall: React.FC<Props> = ({ isNightMode, onOpenLab }) => {
               </button>
             </div>
 
-            <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden group shadow-2xl border-4 transition-transform duration-1000 hover:scale-[1.02]
-              ${isNightMode ? 'border-[#0b1220] bg-black/40' : 'border-white bg-slate-100'}">
-              <img 
-                src="https://files.catbox.moe/a9f0uq.png" 
-                className="w-full h-full object-cover opacity-80 transition-all duration-1000 group-hover:opacity-100 group-hover:scale-110" 
-                alt="AI Design Preview" 
-              />
+            <div className={`relative aspect-[4/3] rounded-[2.5rem] overflow-hidden group shadow-2xl border-4 transition-transform duration-1000 hover:scale-[1.02]
+              ${isNightMode ? 'border-[#0b1220] bg-black/40' : 'border-white bg-slate-100'}`}>
+              
+              <video 
+                autoPlay 
+                loop 
+                muted 
+                playsInline 
+                className="w-full h-full object-cover opacity-80 transition-all duration-1000 group-hover:opacity-100 group-hover:scale-110"
+              >
+                <source src="https://files.catbox.moe/qyeg8o.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center animate-pulse">
-                <i className="fas fa-camera text-white text-3xl"></i>
+              
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center animate-pulse group-hover:scale-110 transition-transform">
+                <i className="fas fa-microchip text-white text-3xl"></i>
+              </div>
+
+              <div className="absolute bottom-6 right-6 px-4 py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="text-[8px] font-orbitron text-cyan-400 tracking-widest uppercase">Bionic AI Engine</span>
               </div>
             </div>
           </div>
