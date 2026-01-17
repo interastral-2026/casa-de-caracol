@@ -4,7 +4,7 @@ import { IMAGE_ASSETS } from '../imageAssets';
 
 interface Props {
   id: string;
-  isNightMode?: boolean; // Adicionado para suportar troca de imagem na galeria
+  isNightMode?: boolean; 
 }
 
 const SectionGallery: React.FC<Props> = ({ id, isNightMode = true }) => {
@@ -23,6 +23,8 @@ const SectionGallery: React.FC<Props> = ({ id, isNightMode = true }) => {
             <img 
               src={src} 
               alt={`Gallery ${i}`} 
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover transition duration-500 group-hover:scale-110 group-hover:rotate-2"
             />
             <div className="absolute inset-0 bg-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">

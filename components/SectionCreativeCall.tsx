@@ -60,6 +60,7 @@ const SectionCreativeCall: React.FC<Props> = ({ isNightMode, onOpenLab }) => {
                 loop 
                 muted 
                 playsInline 
+                preload="metadata"
                 className="w-full h-full object-cover opacity-80 transition-all duration-1000 group-hover:opacity-100 group-hover:scale-110"
               >
                 <source src="https://files.catbox.moe/qyeg8o.mp4" type="video/mp4" />

@@ -159,6 +159,8 @@ const SectionModules: React.FC<Props> = ({ id, isNightMode, onOpenCustomizer }) 
             auto-rotate={!isInfoVisible}
             camera-orbit="90deg 80deg 22m"
             camera-target="-1.2m 0m 0m"
+            loading="lazy"
+            reveal="auto"
             className="w-full h-[250px] md:h-[350px] relative z-10"
             style={{ '--poster-color': 'transparent' } as any}
           >
@@ -198,7 +200,14 @@ const SectionModules: React.FC<Props> = ({ id, isNightMode, onOpenCustomizer }) 
             {cinematicVideos.map((vid) => (
               <div key={vid.id} className={`min-w-[280px] md:min-w-[380px] aspect-[16/10] rounded-[2.5rem] overflow-hidden border relative group shadow-2xl transition-all duration-500 hover:scale-[1.03]
                 ${isNightMode ? 'border-white/10 bg-black/40 shadow-cyan-900/10' : 'border-slate-200 bg-white shadow-slate-200'}`}>
-                <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-700">
+                <video 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  preload="metadata"
+                  className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-700"
+                >
                   <source src={vid.url} type="video/mp4" />
                 </video>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
@@ -232,7 +241,13 @@ const SectionModules: React.FC<Props> = ({ id, isNightMode, onOpenCustomizer }) 
                 <div key={card.id} onClick={() => handleModuleSelect(card.id as ModuleKey, index)}
                   className={`min-w-[75%] sm:min-w-[40%] lg:min-w-[22%] snap-center group relative aspect-[14/10] rounded-[2rem] overflow-hidden border transition-all duration-700
                     ${isActive ? (isNightMode ? 'border-cyan-500 shadow-[0_0_30px_rgba(6,182,212,0.2)] scale-105 z-10' : 'border-teal-500 shadow-xl scale-105 z-10') : (isNightMode ? 'border-white/5 opacity-80' : 'border-slate-200 opacity-90 hover:opacity-100')}`}>
-                  <img src={moduleImg} className="w-full h-full object-cover transition-transform duration-1000 pointer-events-none" alt={card.title} />
+                  <img 
+                    src={moduleImg} 
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover transition-transform duration-1000 pointer-events-none" 
+                    alt={card.title} 
+                  />
                   
                   <div className={`absolute top-4 left-4 px-4 py-2 rounded-full backdrop-blur-md border shadow-lg transition-all
                     ${isActive 
@@ -261,6 +276,8 @@ const SectionModules: React.FC<Props> = ({ id, isNightMode, onOpenCustomizer }) 
               <div className="w-[85%] aspect-[14/10] rounded-[2.5rem] overflow-hidden shadow-2xl group border border-white/5 bg-black/5">
                 <img 
                   src={currentModuleTechnical?.images[themeKey][0]} 
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain object-center transition-transform duration-[2s] group-hover:scale-105" 
                   alt="Architecture View 1" 
                 />
@@ -269,6 +286,8 @@ const SectionModules: React.FC<Props> = ({ id, isNightMode, onOpenCustomizer }) 
               <div className={`w-[60%] aspect-square rounded-[2rem] overflow-hidden shadow-xl self-end -mt-16 md:-mt-24 border-4 transition-transform duration-700 hover:translate-x-2 z-10 group bg-black/5 ${isNightMode ? 'border-[#0b1220]' : 'border-white'}`}>
                 <img 
                   src={currentModuleTechnical?.images[themeKey][1] || currentModuleTechnical?.images[themeKey][0]} 
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110" 
                   alt="Architecture Detail" 
                 />
