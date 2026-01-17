@@ -20,6 +20,12 @@ const SectionContact: React.FC<Props> = ({ id, isNightMode }) => {
   const { language } = useLanguage();
   const t = translations[language];
 
+  const encode = (data: { [key: string]: string }) => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -29,15 +35,19 @@ const SectionContact: React.FC<Props> = ({ id, isNightMode }) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulação de chamada de API / Serviço de Email
     try {
-      await new Promise(resolve => setTimeout(resolve, 1800));
-      console.log("Dados do Formulário Enviados:", formData);
+      // Envio Real para o Netlify Forms
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "contact-form", ...formData })
+      });
+      
       setSubmitted(true);
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
-      console.error("Erro ao enviar:", error);
-      alert("Erro ao enviar a mensagem. Tente novamente.");
+      console.error("Erro ao enviar para Netlify:", error);
+      alert(language === 'pt' ? "Erro ao enviar. Tente novamente." : "Error sending message. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -94,7 +104,16 @@ const SectionContact: React.FC<Props> = ({ id, isNightMode }) => {
 
             <div className="relative">
               {!submitted ? (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form 
+                  name="contact-form"
+                  method="POST"
+                  data-netlify="true"
+                  onSubmit={handleSubmit} 
+                  className="space-y-6"
+                >
+                  {/* Campo oculto necessário para o Netlify identificar o formulário no React */}
+                  <input type="hidden" name="form-name" value="contact-form" />
+                  
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className={`text-[10px] font-bold uppercase tracking-widest ml-1 ${isNightMode ? 'text-slate-500' : 'text-slate-400'}`}>{t.contact.name}</label>
