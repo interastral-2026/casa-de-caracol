@@ -1,7 +1,7 @@
 
 export const translations = {
   pt: {
-    nav: { systems: 'Sistemas', products: 'Produtos', about: 'Sobre', contact: 'Contactos', lab: 'Creative Lab' },
+    nav: { systems: 'Sistemas', products: 'Produtos', about: 'Sobre', blog: 'Blog', contact: 'Contactos', lab: 'Creative Lab' },
     hero: { title: 'A Porta Do', titleSuffix: 'Caracol', subtitle: 'Conheça os diferentes espaços que pode combinar' },
     about: { title: 'A Porta Do Caracol', subtitle: 'Habitar a Arte através da Arquitetura Biônica', description: 'A Porta do Caracol é a materialização de um novo paradigma de habitation. Não construímos casas; criamos Esculturas Habitacionais.', quote: 'Plantar Casa, Cultivar Vidas, Habitar a Arte.' },
     sustainability: { title: 'Tecnologia que Respira', label: 'Performance Eco', desc: 'Nossos sistemas integrados garantem uma pegada de carbono negativa.' },
@@ -13,6 +13,12 @@ export const translations = {
       subtitle: 'Design de Esculturas Habitacionais',
       desc: 'Use a nossa inteligência biónica para visualizar como as nossas estruturas se integram no seu espaço real.',
       cta: 'ABRIR CREATIVE LAB'
+    },
+    blog: {
+      title: 'Journal Biónico',
+      subtitle: 'Explorações sobre o Futuro do Habitar',
+      readMore: 'Ler Artigo Completo',
+      back: 'Voltar ao Journal'
     },
     modules: {
       jacuzzi: { title: "Jacuzzi Caracol Neon", texts: ["Uma obra de arte funcional inspirada na geometria sagrada.", "Equipada com iluminação LED Neon em tom âmbar."] },
@@ -48,7 +54,7 @@ export const translations = {
     }
   },
   en: {
-    nav: { systems: 'Systems', products: 'Products', about: 'About', contact: 'Contacts', lab: 'Creative Lab' },
+    nav: { systems: 'Systems', products: 'Products', about: 'About', blog: 'Blog', contact: 'Contacts', lab: 'Creative Lab' },
     hero: { title: 'The Door of the', titleSuffix: 'Snail', subtitle: 'Discover combined spaces' },
     about: { title: 'The Snail Door', subtitle: 'Inhabiting Art', description: 'We create Inhabitable Sculptures.', quote: 'Plant a House, Cultivate Lives.' },
     sustainability: { title: 'Breathing Tech', label: 'Eco Performance', desc: 'Negative carbon footprint.' },
@@ -60,6 +66,12 @@ export const translations = {
       subtitle: 'Bionic Sculpture Design',
       desc: 'Use our AI to visualize how our structures integrate with your real location.',
       cta: 'OPEN CREATIVE LAB'
+    },
+    blog: {
+      title: 'Bionic Journal',
+      subtitle: 'Exploring the Future of Living',
+      readMore: 'Read Full Article',
+      back: 'Back to Journal'
     },
     modules: {
       jacuzzi: { title: "Snail Jacuzzi", texts: ["Functional art.", "Neon lighting."] },
@@ -95,7 +107,7 @@ export const translations = {
     }
   },
   es: {
-    nav: { systems: 'Sistemas', products: 'Productos', about: 'Sobre', contact: 'Contacto', lab: 'Creative Lab' },
+    nav: { systems: 'Sistemas', products: 'Productos', about: 'Sobre', blog: 'Blog', contact: 'Contacto', lab: 'Creative Lab' },
     hero: { title: 'La Puerta del', titleSuffix: 'Caracol', subtitle: 'Descubre espacios' },
     about: { title: 'La Puerta del Caracol', subtitle: 'Habitar el Arte', description: 'Esculturas Habitables.', quote: 'Plantar Casa, Cultivar Vidas.' },
     sustainability: { title: 'Tecnología Viva', label: 'Eco', desc: 'Huella de carbono negativa.' },
@@ -107,6 +119,12 @@ export const translations = {
       subtitle: 'Diseño Biónico Personalizado',
       desc: 'Visualice nuestras estructuras integradas en su entorno real con IA.',
       cta: 'ABRIR LAB'
+    },
+    blog: {
+      title: 'Diario Biónico',
+      subtitle: 'Explorando el Futuro del Habitar',
+      readMore: 'Leer más',
+      back: 'Volver al Diario'
     },
     modules: {
       jacuzzi: { title: "Jacuzzi Caracol", texts: ["Obra de arte.", "LED Neon."] },
@@ -142,7 +160,7 @@ export const translations = {
     }
   },
   fr: {
-    nav: { systems: 'Systèmes', products: 'Produits', about: 'Propos', contact: 'Contacts', lab: 'Lab Créatif' },
+    nav: { systems: 'Systèmes', products: 'Produits', about: 'Propos', blog: 'Blog', contact: 'Contacts', lab: 'Lab Créatif' },
     hero: { title: 'La Porte du', titleSuffix: 'Escargot', subtitle: 'Découvrez les espaces' },
     about: { title: 'La Porte du Caracol', subtitle: 'Habiter l\'Art', description: 'Sculptures Habitables.', quote: 'Habiter l\'Art.' },
     sustainability: { title: 'Technologie', label: 'Eco', desc: 'Carbone négatif.' },
@@ -152,8 +170,14 @@ export const translations = {
     billboard: { 
       title: 'Concevez Votre Espace', 
       subtitle: 'Design Bionique Sur Mesure',
-      desc: 'Visualisez nos structures intégrées dans votre environnement réel avec l\'IA.',
+      desc: 'Visualisez nos structures integrées dans votre environnement réel avec l\'IA.',
       cta: 'OUVRIR LE LAB'
+    },
+    blog: {
+      title: 'Journal Bionique',
+      subtitle: 'Explorer le Futur de l\'Habitat',
+      readMore: 'Lire l\'article',
+      back: 'Retour au Journal'
     },
     modules: {
       jacuzzi: { title: "Jacuzzi Escargot", texts: ["Art fonctionnel.", "Néon."] },

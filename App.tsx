@@ -5,6 +5,7 @@ import SectionAbout from './components/SectionAbout';
 import SectionModules from './components/SectionModules';
 import SectionSustainability from './components/SectionSustainability';
 import SectionGallery from './components/SectionGallery';
+import SectionBlog from './components/SectionBlog';
 import SectionContact from './components/SectionContact';
 import SectionCreativeCall from './components/SectionCreativeCall';
 import Footer from './components/Footer';
@@ -57,6 +58,7 @@ const App: React.FC = () => {
           <SectionAbout id="about" isNightMode={isNightMode} />
           <SectionCreativeCall isNightMode={isNightMode} onOpenLab={() => openCustomizer()} />
           <SectionSustainability id="sustainability" isNightMode={isNightMode} />
+          <SectionBlog id="blog" isNightMode={isNightMode} />
           <SectionGallery id="gallery" isNightMode={isNightMode} />
           <SectionContact id="contact" isNightMode={isNightMode} />
         </main>

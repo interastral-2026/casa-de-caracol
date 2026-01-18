@@ -22,6 +22,7 @@ const Header: React.FC<HeaderProps> = ({ isVisible, isNightMode, onToggleTheme, 
   const navLinks = [
     { name: t.nav.systems, href: '#sustainability' },
     { name: t.nav.products, href: '#gallery' },
+    { name: t.nav.blog, href: '#blog' },
     { name: t.nav.about, href: '#about' },
     { name: t.nav.contact, href: '#contact' }
   ];
