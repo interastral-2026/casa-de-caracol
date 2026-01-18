@@ -1,6 +1,6 @@
 
 /**
- * ARQUIVO CENTRAL DE ASSETS DE IMAGEM
+
  * Substitua os links abaixo pelos seus links reais (Imgur, Cloudinary, etc.)
  */
 
