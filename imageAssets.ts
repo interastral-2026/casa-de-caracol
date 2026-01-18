@@ -1,5 +1,5 @@
 
-/**
+/*
 
  * Substitua os links abaixo pelos seus links reais (Imgur, Cloudinary, etc.)
  */
